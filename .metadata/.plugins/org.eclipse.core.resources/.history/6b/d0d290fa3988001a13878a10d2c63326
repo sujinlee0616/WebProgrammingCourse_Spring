@@ -1,0 +1,14 @@
+package com.sist.spring3;
+
+import org.springframework.context.ApplicationContext;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String[] data={"sawon.xml","member.xml"};
+		ApplicationContext app
+	}
+
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- [클래스(관리할 클래스 등록)]
+		1. 클래스 등록 <bean>
+		2. 패키지 단위 <context:component-scan>
+		스프링에 등록해서 사용하는 클래스 
+			1) DAO, Manager, Model  
+			2) VO(DTO) => 일반 데이터형 (등록하지 않는다.) 
+			   ====== 
+			   VO는 int, double과 똑같은 일반 데이터형이기 때문에 따로 등록하지 않는다. 
+	-->
+	
+	<!--  [DI (의존성 주입)]
+		1) property DI
+		2) constructor DI
+		3) method DI  		
+		-->
+	
+	<!-- [값 주는 방법] -->
+	<!-- 1. property 태그의 value 속성으로 주기 -->
+	<bean id="sa" class="com.sist.spring.Sawon" scope="singleton" init-method="display">
+		<property name="sabun" value="1"></property>
+		<property name="name" value="홍길동"></property>
+		<property name="dept" value="개발부"></property>
+	</bean>
+	<!-- 2. property 태그 안에 value태그로 주기 -->
+	<bean id="sa1" class="com.sist.spring.Sawon" scope="singleton">
+		<property name="sabun"><value>1</value></property>
+		<property name="name"><value>홍길동</value></property>
+		<property name="dept"><value>개발부</value></property>
+	</bean>	
+	<!-- 3. bean 태그 안에 p태그로 주기 -->
+	<bean id="sa2" class="com.sist.spring.Sawon" p:sabun="3" p:name="춘향이" p:dept="기획부"/>
+	<!-- 4. 생성자를 만들고, 생성자에 값 채워넣어주기  -->
+	<!-- [매개변수가 없는 생성자 호출] : 사용 多★★★
+	     - 아래와 같이 <bean> 등록하면 됨 
+		 - <bean id="sa3" class="com.sist.spring.Sawon"></bean>
+		 - Sawon sa3=new Sawon(); 과 동일
+		 - Sawon.java의 public Sawon(){}을 호출함 
+	-->
+	<!-- [매개변수가 있는 생성자 호출]
+		 - Sawon sa3=new Sawon(); 과 동일
+		 - Sawon.java의 public Sawon(int sabun, String name, String dept){...}을 호출함 
+		 - Spring이 메모리 할당 하니까, 아래와 같이 적어줘야 Spring에서 값 채워주고 메모리 할당함
+		 - ===> 이제는 new 해서 메모리 할당 따로 안 한다!!
+		 - 시작하자마자 값 채워져 있어야 할 때가 있으므로 그럴 때 사용 
+	-->
+	<bean id="sa3" class="com.sist.spring.Sawon">
+		<constructor-arg value="1"/>
+		<constructor-arg value="박문수"/>
+		<constructor-arg value="자재부"/>
+	</bean>
+	<!-- 5. bean 태그 안에 c태그로 주기 : 사용 多★★★ -->
+	<bean id="sa4" class="com.sist.spring.Sawon"
+		c:sabun="2" c:name="이순신" c:dept="총무부"
+	/>
+	<!-- 6. bean 태그 안에 'c:_index번호' 로 주기 -->
+	<bean id="sa5" class="com.sist.spring.Sawon"
+		c:_0="3" c:_1="강감찬" c:_2="교육부"
+	/>
+	
+
+</beans>
+
+
+
+

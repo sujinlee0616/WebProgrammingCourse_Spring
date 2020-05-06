@@ -1,0 +1,7 @@
+package com.sist.spring;
+import java.util.*;
+// 스프링이 관리하는 클래스가 아니다 ==> 일반 데이터형 (int, ...) 
+
+public class EmpVO {
+
+}

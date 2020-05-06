@@ -1,0 +1,7 @@
+package com.sist.spring2;
+
+public interface Hello {
+	public void display();
+	public default void sayHello(){} 
+	// default를 쓰면 구현을 해도 되고 안 해도 된다. 	
+}

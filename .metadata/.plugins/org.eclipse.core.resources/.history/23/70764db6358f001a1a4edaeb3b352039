@@ -1,0 +1,18 @@
+package com.sist.spring;
+import java.util.*;
+import java.sql.*;
+
+public class EmpDAO {
+	private Connection conn;
+	private PreparedStatement ps;
+	
+	// Spring을 통해 이 값이 넘어와야 사용할 수 있다
+	private String driverName;
+	private String url;
+	private String userName;
+	private String password;
+	
+	
+	
+	
+}
