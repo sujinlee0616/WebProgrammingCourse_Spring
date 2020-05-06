@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- DI, AOP, JDBC, ORM => 컨테이너
+	
+									BeanFactory: CORE(DI,DL) 
+										|상속
+									ApplicationContext★: DI,DL + AOP 
+										|상속
+			=============================================================
+			|상속		 				|상속					 		|상속
+	 WebApplicationContext	AnnotationConfigApplicationContext	GenericXmlApplicationContext
+	 : DI,DL,AOP + MVC      : DI,DL,AOP + Java만 사용 가능 (XML 無)  : DI,DL,AOP + Java/XML 사용 가능  
+	 
+	  - DI: Dependency Injection. 주입. 
+	  - DL: Dependency Lookup. 찾기. -->
+
+	<!-- 1.메모리 할당 -->
+	
+	<!-- 2.set메소드에 값 채움 -->
+	<bean id="dao" class="com.sist.spring.EmpDAO">
+		<property name="driverName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="userName" value="hr"/>
+		<property name="password" value="happy"/>
+		<!-- property: 멤버변수 ★★★ ==> EmpDAO가 가지고 있는 멤버변수 --> 
+		<!-- name에서 Ctrl+엔터 해보면 set메소드들에 값 채우는것임을 알 수 있음 ==> DI(의존성 주입) -->
+	</bean>
+	<!-- 우리가 이제까지 직접 코딩했던 아래의 작업을 이제는 Spring이 해준다. + ApplicationContext에 등록 (class.forName해서...) 
+		 EmpDAO dao=new EmpDAO();
+		 dao.setDriverName("jdbc:oracle:thin:@localhost:1521:XE");
+	 -->
+	 
+	 <!-- 3. -->
+	 
+	 <!-- 4. -->
+	 
+	 
+	 
+	 <!-- 
+	 <ApplicationContext 역할>
+	  1. XML 파싱. XML을 ApplicationContext에 넘겨주면 XML을 파싱함. 
+	  2. 클래스 메모리 할당
+	  3. Setter에 값을 채운다
+	  4. 필요한 메소드 호출이 가능하다. ==> init 메소드, destroy 메소드 
+	 
+	  -->
+	 
+</beans>
+
+
+
+
+
+
+
+

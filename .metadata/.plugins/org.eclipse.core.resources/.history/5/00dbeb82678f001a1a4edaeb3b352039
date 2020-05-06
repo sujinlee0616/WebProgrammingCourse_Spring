@@ -1,0 +1,10 @@
+package com.sist.spring;
+
+public class MainClass {
+
+	public static void main(String[] args) {		
+		// 컨테이너에 XML 파일 전송 
+
+	}
+
+}

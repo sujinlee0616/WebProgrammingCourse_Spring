@@ -1,0 +1,6 @@
+package com.sist.spring2;
+
+public class EmpDAO {
+	private EmpMapper mapper;
+	
+}

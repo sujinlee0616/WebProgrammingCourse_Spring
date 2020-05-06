@@ -1,0 +1,8 @@
+package com.sist.spring;
+import java.util.*;
+
+public class DeptDAO {
+	private DeptMapper mapper;
+	
+	
+}

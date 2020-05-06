@@ -1,0 +1,12 @@
+package com.sist.spring;
+
+import java.util.*;
+
+public class SawonContainer {
+	private List<Sawon> list=new ArrayList<Sawon>();
+	
+	
+	
+}
+
+

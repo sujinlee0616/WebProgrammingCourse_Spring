@@ -1,0 +1,40 @@
+package com.sist.spring;
+import java.util.*;
+import java.sql.*;
+
+// 
+public class EmpDAO {
+	private MyBasicDataSource ds;
+	public EmpDAO(MyBasicDataSource ds)
+	{
+		this.ds=ds;
+		try 
+		{
+			Class.forName(ds.getDriverClassName());
+		} catch (Exception ex) {}
+	}
+	
+	private Connection conn;
+	private PreparedStatement ps;
+	
+	public void getConnection()
+	{
+		try 
+		{
+			conn=DriverManager.getConnection(ds.getUrl(),ds.getUserName(),ds.getPassword());
+		} catch (Exception ex) {}
+	}
+	
+	public void disConnection()
+	{
+		try 
+		{
+			if(ps!=null)
+				ps.close();
+			if(conn!=null)
+				conn.close();
+		} catch (Exception ex) {}
+	}
+
+	
+}

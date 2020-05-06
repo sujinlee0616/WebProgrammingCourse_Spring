@@ -1,0 +1,29 @@
+package com.sist.spring;
+
+import java.util.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// Main에서는 DI가 아니라 DL 
+		// DL: Dependency Lookup: 등록된 클래스를 읽어올 때 
+		ApplicationContext app=new ClassPathXmlApplicationContext("app.xml"); // XML 파싱 끝
+		
+		EmpDAO dao=(EmpDAO)app.getBean("dao"); // id=dao인 bean을 찾아옴 ==> DL 
+		List<EmpVO> list=dao.empAllData();
+		for(EmpVO vo:list)
+		{
+			System.out.println("vo.getEmpno()"+"getHiredate"+""+"");
+			System.out.println(vo.getEmpno()+" "
+					+vo.getEmpno()+" "
+					+vo.getJob()+" "
+					+vo.getHiredate().toString()+" "
+					+vo.getSal());
+		}
+		
+	}
+
+}

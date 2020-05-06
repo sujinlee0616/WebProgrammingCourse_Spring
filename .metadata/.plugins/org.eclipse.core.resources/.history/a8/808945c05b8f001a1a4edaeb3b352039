@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 방법1. -->
+	<bean id="s" class="com.sist.spring.Sawon">
+		<property name="sabun">
+			<value>1</value>
+		</property>  <!-- 이것은 setSabun과 동일 -->
+		<property name="name">
+			<value>홍길동</value>
+		</property>
+		<property name="age">
+			<value>30</value>
+		</property>
+		<property name="sex">
+			<value>남자</value>
+		</property>
+	</bean>
+	<!-- 위의 코드는 아래 코드와 같다
+		Sawon s=new Sawon();
+		s.setSabun(1); ... -->
+		
+	<!-- Sawon을 여러개 만들려고... -->
+	<!-- 방법2. -->
+	<bean id="s1" class="com.sist.spring.Sawon">
+		<property name="sabun" value="2"></property>  <!-- 이것은 setSabun과 동일 -->
+		<property name="name" value="심청이"></property>
+		<property name="age" value="25"></property>
+		<property name="sex" value="여자"></property>	
+	</bean>
+	
+	<!-- 방법3. 우리는 이거 쓰자... 제일 간단... -->
+	<bean id="s2" class="com.sist.spring.Sawon" 
+	p:sabun="3" p:name="이순신" p:age="27" p:sex="남자"
+	/>
+	
+	<bean id="sc" class="com.sist.spring.SawonContainer">
+		<!-- list에 값을 채울 때... -->
+		<property name="list">
+			<list>
+				<ref bean="s"/> <!-- list.add(s) -->
+				<ref bean="s1"/> <!-- ref="bean태그의 id명" ==> 객체의 주소가 들어감... -->
+				<ref bean="s2"/>
+			</list>
+		</property>
+	</bean>
+	<!-- 
+		ApplicationContext 
+		
+		Map
+		=======================================================================
+		 id명		할당된 클래스 주소 
+		=======================================================================
+		  s			Class.forName("com.sist.spring.SawonContainer")	
+		=======================================================================
+		  s1
+		=======================================================================
+		  s2
+		=======================================================================
+		
+		=======================================================================
+	 -->
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
