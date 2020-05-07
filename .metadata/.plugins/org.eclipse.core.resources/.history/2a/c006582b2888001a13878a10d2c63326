@@ -1,8 +1,0 @@
-package com.sist.spring2;
-
-public class HelloImpl implements Hello{
-	private void sysout() {
-		// TODO Auto-generated method stub
-
-	}
-}

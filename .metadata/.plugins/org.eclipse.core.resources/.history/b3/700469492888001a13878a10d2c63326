@@ -1,5 +1,0 @@
-package com.sist.spring2;
-
-public abstract class HelloImpl implements Hello {
-
-}

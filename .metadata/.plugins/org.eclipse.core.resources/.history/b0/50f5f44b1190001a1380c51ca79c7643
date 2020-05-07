@@ -1,0 +1,7 @@
+package com.sist.temp;
+
+public class BoardDAO implements MyDAO{
+	
+	
+
+}

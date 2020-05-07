@@ -1,8 +1,0 @@
-package com.sist.spring;
-import java.util.*;
-import java.sql.*;
-
-public class EmpDAO {
-	private Connection conn;
-	
-}

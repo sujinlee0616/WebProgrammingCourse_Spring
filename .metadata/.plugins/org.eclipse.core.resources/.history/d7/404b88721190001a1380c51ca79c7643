@@ -1,0 +1,17 @@
+package com.sist.temp;
+
+public class NoticeDAO implements MyDAO{
+
+	@Override
+	public void select() {
+		
+		
+	}
+
+	@Override
+	public void insert() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

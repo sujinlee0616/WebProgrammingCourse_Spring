@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="SpringBasicProject"/>
+<aop-project name="SpringTestProject1"/>
+<aop-project name="SpringBasicProject1"/>
+<aop-project name="SpringBasicProject2"/>
+<aop-project name="SpringBasicProject3"/>
+<aop-project name="SpringBasicProject4"/>
+<aop-project name="SpringBasicProject5"/>
+<aop-project name="SpringBasicProject6"/>
 </aop-reference-model>

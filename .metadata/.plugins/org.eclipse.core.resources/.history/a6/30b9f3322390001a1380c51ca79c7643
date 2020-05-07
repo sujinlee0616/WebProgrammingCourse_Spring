@@ -1,0 +1,21 @@
+package com.sist.dao;
+
+import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
+import java.util.*;
+
+@Repository("eDao")  //메모리 할당: @Repositiry("id") - 만약 id를 안 주면 클래스명(앞글자는 소문자로 변경됨)이 자동으로 ID로 지정됨.
+// 위의 어노테이션은 아래의 XML 코드와 동일하다
+// <bean id="eDao" class="com.sist.dao.EmpDAO"/>
+public class EmpDAO extends SqlSessionDaoSupport{
+	public List<EmpVO> empAllData()
+	{
+		return getSqlSession().selectList("empAllData");
+
+	}
+	
+	public EmpVO empFindData(int empno)
+	{
+		return getSqlSession().selectOne("empFindData",empno);
+	}
+}

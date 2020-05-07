@@ -1,0 +1,64 @@
+package com.sist.dao;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+//[XML 안 쓰고 Java Annotation만으로 DB 연동하기] 
+/*[app.xml](SpringBasicProject4) 에서의 아래의 코드를 Annotation을 써서 만들어보자
+ * <!-- 4. SqlSessionFactory 생성 -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="ds"
+		p:configLocation="classpath:Config.xml"
+	/>
+ */
+
+@Component("ssf")
+public class MySqlSessionFactoryBean extends SqlSessionFactoryBean{	
+	// 1. @Autowired 만 사용
+	// 자동주입 - Spring에서 생성된 객체의 주소값을 자동으로 넣어줌 ==> @Qualifier("ds") 따로 적어주지 않아도 알아서 ds 찾아서 넣어줌
+	// @Autowired  
+	
+	// 2. @Autowired + @Qualifier("ds")
+	// - 뭘 찾아오는지 명확하게 한정해줌 
+	// @Autowired  
+	// @Qualifier("ds")
+	
+	// 3. @Resource(name="ds")
+	// - 얘는 @Autowired + @Qualifier("ds") 와 같다 
+	// @Resource(name="ds")
+	
+	@Autowired  
+	public void setDataSource(DataSource dataSource) {
+		// TODO Auto-generated method stub
+		super.setDataSource(dataSource);
+	}
+}
+
+
+/* @Autowired  // 자동주입: 클래스의 메모리 주소만 주입 가능. 
+ * public class A
+ * {
+ * 		@
+ * 		MyDAO dao;
+ * 
+ * 		@
+ * 		public void setMyDAO(MyDAO dao){}
+ * 
+ * 		@
+ * 		public void setMyDAO(MyDAO dao){}
+ * 
+ * 		@
+ * 		public void setMyDAO(MyDAO dao){}
+ * 
+ * }
+ */
+
+
+
+
+
+

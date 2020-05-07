@@ -1,0 +1,18 @@
+package com.sist.temp;
+
+public class BoardDAO implements MyDAO{
+
+	@Override
+	public void select() {
+		System.out.println();
+	}
+
+	@Override
+	public void insert() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}

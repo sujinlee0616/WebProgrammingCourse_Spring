@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<!-- [순서] -->
+	<!-- 1. AOP 설정 -->
+	<!-- 2. DataBase 정보 전송 -->
+	<!-- 3. 트랜잭션 처리 -->
+	<!-- 4. SqlSessionFactory 생성 -->
+	<!-- 5. SqlSessionFactory를 DAO에 전송 -->
+	<!-- 오늘 배울 것은 2,3,4 -->
+	
+	
+	<!-- 2. DataBase 정보 전송 -->
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:XE"
+		
+	/>
+	<!--public class BasicDataSource
+	{
+		private String driverClassName;
+		public void setDriverClassName(String driverClassName)
+		{
+			this.drvierClassName=driverClassName;
+		}
+	}-->
+
+</beans>
+
+
+
+
+
+
