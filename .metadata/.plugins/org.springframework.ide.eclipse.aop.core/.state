@@ -8,4 +8,6 @@
 <aop-project name="SpringBasicProject4"/>
 <aop-project name="SpringBasicProject5"/>
 <aop-project name="SpringBasicProject6"/>
+<aop-project name="SpringBasicProject7"/>
+<aop-project name="SpringBasicProject8"/>
 </aop-reference-model>

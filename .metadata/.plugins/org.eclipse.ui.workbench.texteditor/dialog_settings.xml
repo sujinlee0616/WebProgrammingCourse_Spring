@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="EmpDAO" key="selection"/>
+		<item value="twitter" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="twitter"/>
 			<item value="empDAO"/>
 			<item value="lombok"/>
 			<item value="ojdbc"/>
@@ -15,7 +16,6 @@
 			<item value="orm"/>
 			<item value="3.5.1"/>
 			<item value="maven"/>
-			<item value=" maven"/>
 		</list>
 		<list key="replacehistory">
 		</list>

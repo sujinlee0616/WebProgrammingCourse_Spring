@@ -7,6 +7,9 @@
  - SpringBasicProject3: Constructor DI      
  - SpringBasicProject4     
  - SpringBasicProject5     
- - SpringBasicProject6: 라이브러리는 XML로, 사용자 정의는 Annotation으로 코딩   
+ - SpringBasicProject6: 라이브러리는 XML로, 사용자 정의는 Annotation으로 코딩, Naver Search API   
+- SpringBasicProject7: Twitter API      
+- SpringBasicProject8      
        
 # WebProgrammingCourse_Spring        
+       

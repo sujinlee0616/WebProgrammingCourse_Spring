@@ -1,0 +1,7 @@
+package com.sist.dao;
+
+public class MemberVO {
+	private int no;
+	private String name;
+	private String sex;
+}

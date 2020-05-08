@@ -1,0 +1,18 @@
+package com.sist.data;
+
+import twitter4j.TwitterStream;
+import twitter4j.TwitterStreamFactory;
+
+public class TwitterMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			TwitterStream ts=new TwitterStreamFactory().getInstance();
+			String[] data={};
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

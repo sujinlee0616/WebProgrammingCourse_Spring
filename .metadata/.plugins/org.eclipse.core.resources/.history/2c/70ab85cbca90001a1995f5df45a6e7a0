@@ -1,0 +1,7 @@
+package com.sist.data;
+
+import twitter4j.StatusListener;
+
+public class TwitterListener implements StatusListener{
+
+}

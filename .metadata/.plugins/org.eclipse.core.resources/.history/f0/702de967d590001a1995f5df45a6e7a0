@@ -1,0 +1,6 @@
+package com.sist.dao;
+
+public class MemberVO {
+	private int no;
+	private 
+}
