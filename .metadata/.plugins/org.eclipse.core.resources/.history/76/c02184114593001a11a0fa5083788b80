@@ -1,0 +1,42 @@
+package com.sist.myapp;
+
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.sist.dao.BoardDAO;
+import com.sist.dao.BoardVO;
+
+@Controller
+public class BoardController {
+	@Autowired
+	private BoardDAO dao;
+	
+	@GetMapping("board/list.do")
+	public String board_list(Model model,String page) // Model:전송용
+	{
+		// 1. 매개변수 => 사용자의 요청값을 받는다. 
+		// 무조건 넘어오는 건 int로 잡는다. 
+		// page는 1페이지는 넘어오지 않으므로 String으로 잡는다.
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		int rowSize=10;
+		int start=rowSize*(curpage-1)+1;
+		int end=rowSize*curpage;
+		
+		Map map=new HashMap();
+		map.put("start",start);
+		map.put("end",end);
+		List<BoardVO> list=dao.boardListData(map);
+		// 2. 요청에 대한 처리 
+		
+		// 3. 처리된 결과값 
+		model.addAttribute("list",list);
+		
+		return "board/list";
+	}
+	
+	
+}

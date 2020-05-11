@@ -1,0 +1,8 @@
+package com.sist.dao;
+
+import java.util.*;
+
+public class BoardVO {
+	private int no;
+	private String name;
+}

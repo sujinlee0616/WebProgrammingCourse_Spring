@@ -1,0 +1,10 @@
+package com.sist.myapp;
+
+import org.springframework.stereotype.Controller;
+import java.util.*;
+import com.sist.dao.*;
+
+@Controller
+public class BoardController {
+
+}

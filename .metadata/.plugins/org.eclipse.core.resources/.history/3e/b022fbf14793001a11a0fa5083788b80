@@ -1,0 +1,37 @@
+package com.sist.dao;
+
+import java.util.*;
+import org.apache.ibatis.annotations.Select;
+
+public interface BoardMapper {
+	
+	/* 
+	 * <select id="boardListData" resultType="BoardVO" parameterType="java.util.Map">
+	 *         =================  ===================  =============================
+	 *         public List<BoardVO>(resultType)     boardListData(Map map);
+	 *                                              =============
+	 *                                                   id
+	 * </select>
+	 */
+	
+	@Select("SELECT no,subject,name,regdate,hit,num "
+			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
+			+ "FROM (SELECT no,subject,name,regdate,hit "
+			+ "FROM board ORDER BY no DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<BoardVO> boardListData(Map map);
+	
+	// 총 페이지 구하기
+	@Select("SELECT CEIL(COUNT(*)/10.0) FROM board")
+	public int boardTotalPage();
+	
+	
+	
+	
+}
+
+
+
+
+
+

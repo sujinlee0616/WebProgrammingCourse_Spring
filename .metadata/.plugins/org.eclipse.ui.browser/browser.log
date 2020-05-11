@@ -1,0 +1,8 @@
+
+5월 11, 2020 11:35:10.07 NEW SESSION
+5월 11, 2020 11:35:10.07 [15612:9300:0511/113510.070:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 11, 2020 11:35:17.36 [15612:9300:0511/113517.362:ERROR:device_event_log_impl.cc(162)] [11:35:17.363] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 11, 2020 11:50:26.55 [20000:9844:0511/115026.555:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 11, 2020 11:50:29.76 [20000:9844:0511/115029.768:ERROR:device_event_log_impl.cc(162)] [11:50:29.768] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 11, 2020 11:50:38.02 [16032:13028:0511/115038.021:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 11, 2020 11:50:49.64 [16032:13028:0511/115049.646:ERROR:device_event_log_impl.cc(162)] [11:50:49.646] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
