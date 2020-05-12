@@ -74,6 +74,7 @@ public class BoardController {
 	// [상세보기]
 	@GetMapping("board/detail.do")
 	public String board_detail(Model model,int no) // 보내주는 값이 있으므로 Model 설정, no값 받아야 하므로 int no
+	//                         =========== model 안에 request가 존재한다. 
 	{
 		// DAO 연결
 		BoardVO vo=dao.boardDetailData(no);

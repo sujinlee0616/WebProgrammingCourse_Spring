@@ -1,0 +1,81 @@
+package com.sist.mgr;
+
+import java.util.*;
+import java.text.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import com.sist.mgr.NewsVO;
+
+
+public class NewsManager {
+
+	public ArrayList<NewsVO> newsAllData()
+	{
+		ArrayList<NewsVO> list = new ArrayList<NewsVO>();
+		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+		String today=sdf.format(date);
+		
+		try 
+		{			
+			for(int i=1;i<=18;i++) //珥� 18�럹�씠吏��땲源�
+			{
+				Document doc = Jsoup.connect("https://movie.daum.net/magazine/new?tab=nws&regdate="+today+"&page="+i).get(); 
+				// Document: HTML 媛��졇�삩�떎.
+				// doc: https://movie.daum.net/magazine/new�뿉�꽌 �냼�뒪蹂닿린 �븯硫� �굹�삤�뒗 HTML�뱾�씠 ���옣�맖.
+				// https://movie.daum.net/magazine/new?tab=nws&regdate=20200218&page=4 
+				
+				Elements title=doc.select("ul.list_line strong.tit_line a");
+				Elements poster=doc.select("ul.list_line a.thumb_line span.thumb_img");
+				Elements link=doc.select("ul.list_line strong.tit_line a");
+				// temp�뒗 �옉�꽦�옄�� �벑濡앹씪�쓣 �룞�떆�뿉 媛�吏�怨� �엳�쓬 
+				Elements temp=doc.select("span.cont_line span.state_line");
+				Elements content=doc.select("span.cont_line a.desc_line");
+				
+				for(int j=0;j<title.size();j++)
+				{
+					// �옒 �굹�삤�뒗吏� �솗�씤 
+					System.out.println(title.get(j).text());
+					
+					String ss=poster.get(j).attr("style");
+					ss=ss.substring(ss.indexOf("(")+1, ss.lastIndexOf(")"));
+					System.out.println(ss);
+					
+					System.out.println(link.get(j).attr("href"));
+					// temp瑜� �옉�꽦�옄�� �벑濡앹씪濡� �굹�늻湲� 
+					// �돱�뒪�뿏�꺕諛쒗뻾�씪�옄20.02.18
+					String str=temp.get(j).text();
+					String author=str.substring(0, str.indexOf("�꺕"));
+					String regdate=str.substring(str.lastIndexOf("�옄")+1);
+					System.out.println(author);
+					System.out.println(regdate);
+					//System.out.println(temp.get(j).text());
+					System.out.println(content.get(j).text());
+					System.out.println("================================");
+					
+					// DB�뿉 �꽔�뒗�떎 
+					NewsVO vo=new NewsVO();
+					vo.setTitle(title.get(j).text());
+					vo.setLink(link.get(j).attr("href"));
+					vo.setContent(content.get(j).text());
+					vo.setPoster(ss);
+					vo.setRegdate(regdate);
+					vo.setAuthor(author);
+					
+					// �삤�씪�겢 �쟾�넚
+					dao.newsInsert(vo);
+					
+				}
+			}
+			System.out.println("Save End ...");
+					
+		} 
+		catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		return list;
+	}
+	
+}

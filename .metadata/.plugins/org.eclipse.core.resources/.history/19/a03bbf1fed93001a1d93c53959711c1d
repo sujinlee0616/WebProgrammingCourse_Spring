@@ -1,0 +1,12 @@
+package com.sist.dao;
+
+import java.util.*;
+import org.apache.ibatis.annotations.Select;
+
+public interface MovieMapper {
+	@Select("SELECT mno,title,poster,num "
+			+ "FROM (SELECT mno,title,poster,rownum as num "
+			+ "FROM (SELECT mno,title,poster "
+			+ "FROM movie WHERE type=#{type})) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+}

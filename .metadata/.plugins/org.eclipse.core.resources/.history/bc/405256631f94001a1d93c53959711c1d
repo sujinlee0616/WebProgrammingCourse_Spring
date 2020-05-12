@@ -1,0 +1,56 @@
+package com.sist.mgr;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+// ★★★ JSON 사용 ★★★
+// [{키:값,키:값}]
+import org.springframework.stereotype.Component;
+import java.util.*;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import java.io.*;
+import java.net.URL;
+
+@Component
+public class MovieManager {
+	
+	public static void main(String[] args) {
+		MovieManager m=new MovieManager();
+		m.movieGetJson("searchMainDailyBoxOffice.do");
+	}
+	
+	public String movieGetJson(String url)
+	{
+		String json="";
+		
+		try 
+		{
+			// [방법1]
+			URL strUrl=new URL("http://www.kobis.or.kr/kobis/business/main/"+url);
+			HttpURLConnection conn=(HttpURLConnection)strUrl.openConnection();
+			StringBuffer sb=new StringBuffer();
+			if(conn!=null)
+			{
+				BufferedReader br=new BufferedReader(
+						new InputStreamReader(conn.getInputStream(),"UTF-8"));
+				while(true)
+				{
+					String temp=br.readLine();
+					if(temp==null)
+						break;
+					sb.append(temp);
+				}
+			}
+			json=sb.toString();
+			
+			// [방법2]
+			/*Document doc=Jsoup.connect("http://www.kobis.or.kr/kobis/business/main/"+url).get();
+			json=doc.toString();*/
+			
+			System.out.println(json);
+			
+		} catch (Exception ex) {}
+		return json;
+	}
+}

@@ -1,0 +1,38 @@
+package com.sist.mgr;
+
+// ★★★ JSON 사용 ★★★
+// [{키:값,키:값}]
+import org.springframework.stereotype.Component;
+import java.util.*;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import java.io.*;
+import java.net.URL;
+
+@Component
+public class MovieManager {
+	public String movieGetJson(String url)
+	{
+		String json="";
+		try 
+		{
+			URL strUrl=new URL("http://www.kobis.or.kr/kobis/business/main/"+url);
+			HttpsURLConnection conn=(HttpsURLConnection)strUrl.openConnection();
+			StringBuffer sb=new StringBuffer();
+			if(conn!=null)
+			{
+				BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+				while(true)
+				{
+					String temp=br.readLine();
+					sb.append(temp);
+					if(temp==null)
+						break;
+				}
+				
+			}
+		} catch (Exception ex) {}
+		return json;
+	}
+}

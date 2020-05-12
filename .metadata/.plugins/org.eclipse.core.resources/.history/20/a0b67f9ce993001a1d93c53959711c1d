@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:component-scan base-package="com.sist.*"/>
+	<!-- =============================
+		 <메모리 할당 Annotation>
+		 @Component, : 메인 클래스, 일반 클래스 
+		 @Repository, : DAO 
+		 @Service, : 
+		 @Controller, : Model클래스. forward or redirect. ==> 파일명 
+		                           =======    =========
+		                           request유지O	request유지X
+		 @RestController, : Model클래스.
+		 ※ 참고) @Controller vs RestController 차이점
+		  
+		 @ControllerAdvice, 
+		 =============================
+		 <DI관련 Annotation> ==> 값을 넣어줌.(주입) 
+		 @Required, 
+		 @Autowired, 
+		 @PostConstruct, 
+		 @PreDestroy, 
+		 @Resource,  -->
+	
+
+</beans>

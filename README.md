@@ -8,10 +8,11 @@
  - SpringBasicProject4     
  - SpringBasicProject5     
  - SpringBasicProject6: 라이브러리는 XML로, 사용자 정의는 Annotation으로 코딩, Naver Search API   
-- SpringBasicProject7: Twitter API      
+- SpringBasicProject7: Twitter API 이용       
 - SpringBasicProject8      
 - SpringMVCProject1: Spring MVC 구조 설명      
-- SpringMVCProject2: 게시판 만들기, RestController      
+- SpringMVCProject2: 게시판, RestController      
+- SpringMVCProject3: 영화사이트, React 기초       
        
 # WebProgrammingCourse_Spring        
        
