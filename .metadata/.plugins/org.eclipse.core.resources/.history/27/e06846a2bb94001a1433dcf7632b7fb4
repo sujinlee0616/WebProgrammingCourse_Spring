@@ -1,0 +1,13 @@
+package com.sist.dao;
+
+import java.util.*;
+import org.apache.ibatis.annotations.Select;
+
+public class DataBoardMapper {
+	
+	@Select("SELECT no,subject,name,regdate,hit,num "
+			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
+			+ "FROM (SELECT no,subject,name,regdate,hit "
+			+ "FROM spring_databoard ORDER BY no DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")	
+}

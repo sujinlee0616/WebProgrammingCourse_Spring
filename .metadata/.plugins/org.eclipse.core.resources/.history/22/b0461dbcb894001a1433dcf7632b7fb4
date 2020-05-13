@@ -1,0 +1,6 @@
+package com.sist.dao;
+
+// 게시판 DAO 따로, 댓글 DAO 따로 만들 예정 ==> DAO가 여러개 ==> Service 
+public class DataBoardDAO {
+
+}

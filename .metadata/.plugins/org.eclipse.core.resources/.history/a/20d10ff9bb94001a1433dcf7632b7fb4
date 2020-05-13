@@ -1,0 +1,21 @@
+package com.sist.dao;
+
+import java.util.*;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
+
+public class DataBoardMapper {
+	
+	@Select("SELECT no,subject,name,regdate,hit,num "
+			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
+			+ "FROM (SELECT no,subject,name,regdate,hit "
+			+ "FROM spring_databoard ORDER BY no DESC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<DataBoardVO> databoardListData(Map map);
+	
+	@SelectKey(keyProperty="no", resultType=int.class, before=true,
+			statement="SELECT NVL(MAX(no)+1,1) as no FROM spring_databoard")
+	@Insert("INSERT INTO spring_databoard VALUES")
+}
