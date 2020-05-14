@@ -1,8 +1,0 @@
-package com.sist.spring;
-
-public class MyBasicDataSource {
-	private String driverClassName;
-	private String url;
-	private String userName;
-	private String 
-}

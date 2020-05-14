@@ -1,8 +1,0 @@
-package com.sist.spring;
-
-import java.util.*;
-
-public class EmpDAO {
-	private MyBasicDataSource ds;
-	
-}

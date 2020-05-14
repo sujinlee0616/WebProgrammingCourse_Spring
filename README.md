@@ -13,7 +13,10 @@
 - SpringMVCProject1: Spring MVC 구조 설명      
 - SpringMVCProject2: 게시판, RestController      
 - SpringMVCProject3: 영화사이트, React 기초       
-- SpringMVCProject4: 파일 업로드 게시판
+- SpringMVCProject4: 파일 업로드 게시판(파일 CRUD) + R을 사용한 그래프 이미지 출력 
+  : Tomcat + R server
+- SpringMVCProject5: MongoDB
+  : MongoDB로 네이버 영화 데이터 수집 
        
 # WebProgrammingCourse_Spring        
        

@@ -1,8 +1,0 @@
-package com.sist.spring;
-import java.util.*;
-// VO: 스프링이 관리하는 클래스가 아니다 ==> 일반 데이터형 (int, ...)임 
-
-
-public class EmpVO {
-
-}

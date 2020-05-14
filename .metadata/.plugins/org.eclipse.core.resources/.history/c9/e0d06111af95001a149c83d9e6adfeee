@@ -1,0 +1,91 @@
+package com.sist.manager;
+
+import java.util.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import com.sist.dao.MovieVO;
+
+public class MovieManager {
+	
+	public List<String> movieLinkData()
+	{
+		List<String> list=new ArrayList<String>();
+		
+		/*<td class="title">
+			<div class="tit5">
+				<a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움">가버나움</a>
+			</div>
+		</td>
+		*/	
+		
+		try 
+		{
+			for(int i=1;i<=40;i++) // 총 40페이지 	
+			{
+				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200513&page="+i).get();
+				Elements link=doc.select("td.title div.tit5 a");
+				for(int j=0;j<link.size();j++)
+				{
+					String strLink=link.get(j).attr("href");
+					list.add("https://movie.naver.com"+strLink);
+				}
+			}
+			
+		} catch (Exception ex) {}
+		
+		return list;
+	}
+	
+	public void movieAllData()
+	{
+		try {
+			List<String> list=movieLinkData();
+			int k=1;
+			for(String url:list)
+			{
+				// 성인영화는 크롤링 불가 ==> 크롤링 불가한 애들 이후에도 크롤링 되게 하기 위해서 for문 안에 try~catch를 이렇게 달아줬음 
+				try {
+					Document doc=Jsoup.connect(url).get();
+
+					Element title=doc.selectFirst("div.mv_info h3.h_movie a");
+					Element poster=doc.selectFirst("div.poster a img");
+					Element genre=doc.selectFirst("dl.info_spec span a");
+					//Element grade=doc.selectFirst("dt.step4 a");
+					Element grade=doc.selectFirst("dl.info_spec:nth-child(8) p a");
+					Element director=doc.selectFirst("dt.step2 a");
+					Element actor=doc.selectFirst("dt.step3 a");
+					Element story=doc.selectFirst("div.story_area p.con_tx");
+					
+					MovieVO vo=new MovieVO();
+					vo.setMno(Integer.parseInt(url.substring(url.lastIndexOf("=")+1))); 
+					// <a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움"> 에서 href의 = 뒤의 숫자 긁음
+					// 영화 고유번호 
+					System.out.println("================== 영화정보 ==================");
+					System.out.println("k="+k);
+					System.out.println(제목: title.text());
+					System.out.println(poster.attr("src"));
+					System.out.println(genre.text());
+					System.out.println(grade.text());
+					System.out.println(director.text());
+					System.out.println(actor.text());
+					System.out.println(story.text());
+				} catch (Exception ex) {}
+				k++;
+				
+			}
+		} catch (Exception ex) {}
+	}
+
+	public static void main(String[] args) {
+		MovieManager m=new MovieManager();
+		m.movieAllData();
+	}
+}
+
+
+
+
+
+

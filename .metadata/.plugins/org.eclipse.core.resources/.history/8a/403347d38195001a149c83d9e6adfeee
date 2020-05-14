@@ -1,0 +1,8 @@
+package com.sist.databoard;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DataBoardRestController {
+	//Á¹¸®´Ù...
+}

@@ -1,0 +1,33 @@
+package com.sist.manager;
+
+import java.util.*;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+public class MovieManager {
+	
+	public List<String> movieLinkData()
+	{
+		List<String> list=new ArrayList<String>();
+		
+		/*<td class="title">
+			<div class="tit5">
+				<a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움">가버나움</a>
+			</div>
+		</td>
+		*/	
+		
+		try 
+		{
+			for(int i=1;i<=40;i++) // 총 40페이지 	
+			{
+				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200513&page="+i).get();
+			}
+			
+		} catch (Exception ex) {}
+		
+		return list;
+	}
+
+}

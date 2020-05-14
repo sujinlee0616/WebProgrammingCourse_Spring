@@ -1,0 +1,6 @@
+package com.sist.dao;
+
+public class MovieVO {
+	private int mno;
+	private String title;
+}

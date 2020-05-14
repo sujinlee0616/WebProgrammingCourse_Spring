@@ -1,0 +1,105 @@
+package com.sist.manager;
+
+import java.net.URLEncoder;
+import java.util.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import com.sist.dao.*;
+
+public class Test {
+	
+	 public void emartData() {
+	      //List<EmartVO> list=new ArrayList<EmartVO>();
+	      int k=1;
+	      try {
+	         
+	         
+	         for(int i=1;i<=4;i++) 
+	         {
+	            Document doc=Jsoup.connect("http://emart.ssg.com/search.ssg?target=all&query="+"햇반"+"&src_area=late&page="+i+"&count=80").get();
+//	            Document doc=Jsoup.connect("http://emart.ssg.com/search.ssg?target=all&query="+URLEncoder.encode("햇반")).get();
+
+	            Elements link=doc.select("div#divProductImg div.cunit_info");
+	            System.out.println("link.size():"+link.size());
+	            for(int j=0;j<link.size();j++) 
+	            {
+	               try {
+	                  
+	                  Element elem=link.get(j);
+	                  Document doc2=Jsoup.
+	                  
+	                  
+	                  
+	                  // 상품코드
+	                  Element producCode=doc.select("div#divProductImg div.cunit_info div.cunit_md a").get(0);
+	                  String strProducCode=producCode.attr("href");
+	                  strProducCode=strProducCode.substring(strProducCode.indexOf("itemId=")+7,strProducCode.indexOf("&siteNo"));
+	                  System.out.println("상품코드: "+strProducCode);
+	                  
+	                  // name
+	                  Element name=doc.select("div#divProductImg div.cunit_info div.cunit_md a.clickable em.tx_ko").get(0);
+	                  String strName=name.text();
+	                  System.out.println(k+". "+strName);
+	                  
+	                  // price
+	                  Element price=doc.select("div#divProductImg div.cunit_info div.cunit_price div.opt_price em.ssg_price").get(j);
+	                  String strPrice=price.text();
+	                  System.out.println("가격: "+strPrice);
+	                  
+	                  // unitprice (100g당 price) 
+	                  Element unitPrice=doc.select("div#divProductImg div.cunit_info div.cunit_prw div.unit").get(j);
+	                  String strUnitPrice=unitPrice.text();
+	                  System.out.println("단위당 가격: "+strUnitPrice);
+	                  
+	                  // volume
+	                  
+	                  // review score
+	                  /*try {
+	                     Element reviewScore=doc.select("div#divProductImg div.cunit_info div.cunit_app span.blind").get(j);
+	                     System.out.println("평점: "+reviewScore.text());
+	                  } catch(Exception ex) {
+	                     System.out.println("평점: 0");
+	                  }*/
+	                  
+	                  
+	                  // review count
+	                  /*try {
+	                     Element reviewCount=doc.select("div#divProductImg div.cunit_info div.cunit_app span.rate_tx em").get(j);
+	                     System.out.println("리뷰 수: "+reviewCount.text());
+	                  } catch(Exception ex) {
+	                     System.out.println("리뷰없음");
+	                  }*/
+	                  
+	                  
+	                  System.out.println("-----------------------------------------------");
+	                  k++;               
+	                  
+	                  
+	                  Thread.sleep(100);
+	                  
+	               } catch(Exception ex) {
+	                  ex.printStackTrace();
+	               }
+	            }
+	         }
+	         
+	      } catch(Exception ex) {
+	         System.out.println("EmartManager : ");
+	         ex.printStackTrace();
+	      }
+	      
+	      
+	      return list;
+	   }
+	   
+	   
+	   
+	   public static void main(String[] args) {
+	      // TODO Auto-generated method stub
+	      EmartManager3 m=new EmartManager3();
+	      m.emartData();
+	   }
+
+}

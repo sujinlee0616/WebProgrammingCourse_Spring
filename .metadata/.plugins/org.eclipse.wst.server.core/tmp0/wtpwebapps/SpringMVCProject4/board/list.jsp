@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-	<%= application.getRealPath("/board") %>
+	<%= application.getRealPath("/board") %> <!-- realpath -->
 	<div class="container">
 		<h1 class="text-center">자료실</h1>
 		<div class="row">

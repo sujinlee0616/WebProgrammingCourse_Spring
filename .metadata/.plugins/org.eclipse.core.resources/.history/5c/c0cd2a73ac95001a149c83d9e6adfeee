@@ -1,0 +1,69 @@
+package com.sist.manager;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import com.sist.dao.MovieVO;
+
+public class MovieManager {
+	
+	public List<String> movieLinkData()
+	{
+		List<String> list=new ArrayList<String>();
+		
+		/*<td class="title">
+			<div class="tit5">
+				<a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움">가버나움</a>
+			</div>
+		</td>
+		*/	
+		
+		try 
+		{
+			for(int i=1;i<=40;i++) // 총 40페이지 	
+			{
+				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200513&page="+i).get();
+				Elements link=doc.select("td.title div.tit5 a");
+				for(int j=0;j<link.size();j++)
+				{
+					String strLink=link.get(j).attr("href");
+					list.add("https://movie.naver.com"+strLink);
+				}
+			}
+			
+		} catch (Exception ex) {}
+		
+		return list;
+	}
+	
+	public void movieAllData()
+	{
+		try {
+			List<String> list=movieLinkData();
+			for(String url:list)
+			{
+				Document doc=Jsoup.connect(url).get();
+				Element title=null;
+				Element title=null;
+				Element title=null;
+				Element title=null;
+				Element title=null;
+				
+				MovieVO vo=new MovieVO();
+				vo.setMno(Integer.parseInt(url.substring(url.lastIndexOf("=")+1))); 
+				// <a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움"> 에서 href의 = 뒤의 숫자 긁음
+				// 영화 고유번호 
+			}
+		} catch (Exception ex) {}
+	}
+
+}
+
+
+
+
+
+

@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.*;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sist.dao.*;
+import com.sist.manager.RManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,10 @@ public class DataBoardController {
 	
 	@Autowired
 	private DataBoardDAO dao;
+	
+	// R
+	@Autowired
+	private RManager rm;	
 	
 	// [글 목록]
 	@RequestMapping("list.do")
@@ -135,6 +142,15 @@ public class DataBoardController {
 		}
 		model.addAttribute("vo",vo);
 		
+		// ★★★ R로 만든 그래프 출력 ★★★
+		try {
+			FileWriter fw=new FileWriter("c:\\data\\board.txt");
+			fw.write(vo.getContent()+"\r\n");
+			fw.close();
+			
+			rm.rGraph(no);
+		} catch (Exception ex) {}
+		
 		return "board/detail";
 		
 	}
@@ -170,7 +186,28 @@ public class DataBoardController {
 		} catch (Exception ex) {}
 	}
 	
+	// [수정하기] - 수정하기 화면 보여줌. 수정 폼에 글 정보를 불러와서 넣어준다
+	@RequestMapping("update.do")
+	public String update_board(Model model,int no)
+	{
+		DataBoardVO vo=dao.databoardUpdateData(no);
+		model.addAttribute("vo",vo);
+		return "board/update";
+	}
 	
+	// [삭제하기] - 화면출력. no 넘겨줘야함. 
+	/*
+	 *    JSP ==> DispatcherServlet ==> @Controller 
+	 *      							=========== @RequestMapping ==> 결과값 출력(JSP) 
+	 *      														DAO
+	 *      														Model
+	 */
+	@RequestMapping("delete.do")
+	public String delete_board(Model model,int no) // no 보내줘야해서 model 필요함 
+	{
+		model.addAttribute("no",no);
+		return "board/delete";
+	}
 	
 }
 

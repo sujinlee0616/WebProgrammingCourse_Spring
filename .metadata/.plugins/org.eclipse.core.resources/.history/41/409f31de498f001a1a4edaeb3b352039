@@ -1,8 +1,0 @@
-package com.sist.spring2;
-
-public class MainClass {
-
-	public MainClass() {
-		// TODO Auto-generated constructor stub
-	}
-}

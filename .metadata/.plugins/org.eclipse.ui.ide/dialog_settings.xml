@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Foodle\TeamProject"/>
+		<item value="C:\Users\sist\git\WebProgrammingCourse_JSP\JSPBasicProject5"/>
 		<item value="C:\dbDev\dbStudy\MovieProject2"/>
 		<item value="C:\webDev\webStudy\MVCProject3"/>
 	</list>

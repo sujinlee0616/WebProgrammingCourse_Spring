@@ -1,9 +1,0 @@
-package com.sist.spring;
-/*
- * DEPTNO    NUMBER(2)    
-DNAME     VARCHAR2(14) 
-LOC       VARCHAR2(13)  
- */
-public class DeptVO {
-	
-}

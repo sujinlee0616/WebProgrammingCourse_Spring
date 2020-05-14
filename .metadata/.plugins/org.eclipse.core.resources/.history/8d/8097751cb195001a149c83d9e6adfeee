@@ -1,0 +1,10 @@
+package com.sist.dao;
+
+//¡Ú¡Ú¡Ú [MongoDB] ¡Ú¡Ú¡Ú
+
+import com.mongodb.*;
+
+public class MovieDAO {
+	private MongoClient mc;
+	private DB db;
+}

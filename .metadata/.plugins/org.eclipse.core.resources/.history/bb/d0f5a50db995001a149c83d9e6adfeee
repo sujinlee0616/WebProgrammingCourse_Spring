@@ -1,0 +1,19 @@
+package com.sist.mongo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.sist.dao.MovieDAO;
+
+@Controller
+public class MovieController {
+	@Autowired
+	private MovieDAO dao;
+
+	@RequestMapping("movie/list.do")
+	public String 
+	{
+		
+	}
+	
+}

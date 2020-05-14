@@ -1,9 +1,0 @@
-package com.sist.dao;
-
-import org.apache.ibatis.annotations.Select;
-
-public class DataBoardMapper {
-	
-	@Select("SELECT no,subject,name,regdate,hit,hum")
-	
-}

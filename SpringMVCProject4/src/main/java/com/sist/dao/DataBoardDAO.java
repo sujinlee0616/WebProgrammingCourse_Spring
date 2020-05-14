@@ -27,11 +27,13 @@ public class DataBoardDAO {
 	 *         요렇게 써야 한다.      
 	 */
 	
+	// [글 목록] - 글 데이터 
 	public List<DataBoardVO> databoardListData(Map map)
 	{
 		return mapper.databoardListData(map);
 	}
 	
+	// [글 목록] - 총페이지
 	public int databoardTotalpage()
 	{
 		return mapper.databoardTotalpage();
@@ -48,8 +50,43 @@ public class DataBoardDAO {
 		return mapper.databoardDetailData(no);
 	}
 
+	// [글 수정] - 수정 폼에 글 정보를 불러와서 넣어준다
+	public DataBoardVO databoardUpdateData(int no)
+	{
+		return mapper.databoardDetailData(no);
+	}
 	
+	// [글 수정] - 비번체크 
+	public String databoardGetPassword(int no)
+	{
+		return mapper.databoardGetPassword(no);
+	}
 	
+	// [글 수정] - 데이터 수정 
+	public void databoardUpdate(DataBoardVO vo)
+	{
+		mapper.databoardUpdate(vo);
+	}
+	
+	// [글 삭제] - 비번 맞으면 삭제 
+	public boolean databoardDelete(int no, String pwd)
+	{
+		boolean bCheck=false;
+		String db_pwd=mapper.databoardGetPassword(no);
+		if(db_pwd.equals(pwd))
+		{
+			mapper.databoardDelete(no);
+			bCheck=true;
+		}		
+		return bCheck;
+	}
+	// [글 삭제] - 파일 있는지 체크
+	public DataBoardVO databoardFileInfoData(int no)
+	{
+		return mapper.databoardFileInfoData(no);
+	}
+
+
 }
 
 

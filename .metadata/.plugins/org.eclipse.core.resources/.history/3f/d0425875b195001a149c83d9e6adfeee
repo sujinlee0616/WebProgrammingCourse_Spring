@@ -1,0 +1,19 @@
+package com.sist.dao;
+
+import com.mongodb.*;
+
+//★★★ [MongoDB] ★★★
+public class MovieDAO {
+	private MongoClient mc; // Connection
+	private DB db; // DataBase(XE)
+	private DBCollection dbc; // Table
+	public MovieDAO()
+	{
+		try {
+			mc=new MongoClient("localhost",27017); // Oracle의 1521처럼 MongoDB는 27017
+			db=mc.getDB("mydb"); // 우리가 저번에 이름을 mydb로 만들어놨으니까..
+			dbc=db.getCollection("movie");
+			
+		} catch (Exception ex) {}
+	}
+}

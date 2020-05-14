@@ -1,0 +1,32 @@
+package com.sist.manager;
+
+import java.util.*;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+public class MovieManager {
+	
+	public List<String> movieLinkData()
+	{
+		List<String> list=new ArrayList<String>();
+		
+		/*<td class="title">
+			<div class="tit5">
+			<a href="/movie/bi/mi/basic.nhn?code=174830" title="가버나움">가버나움</a>
+			</div>
+		</td>
+		*/	
+		
+		try 
+		{
+					
+			Document doc=Jsoup.connect("").get();
+		} catch (Exception ex) {}
+		
+		
+		
+		return list;
+	}
+
+}

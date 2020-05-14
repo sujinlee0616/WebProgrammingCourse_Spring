@@ -1,0 +1,20 @@
+package com.sist.manager;
+
+import java.util.*;
+
+public class MovieManager {
+	
+	public List<String> movieLinkData()
+	{
+		List<String> list=new ArrayList<String>();
+		
+		try {
+			
+		} catch (Exception ex) {}
+		
+		
+		
+		return list;
+	}
+
+}
