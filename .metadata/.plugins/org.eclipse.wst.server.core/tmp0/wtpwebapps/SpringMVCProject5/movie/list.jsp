@@ -18,9 +18,27 @@ h1 {
 </style>
 </head>
 <body>
+<!--JSP =======> MovieController 			 =========>   DAO (오라클, 몽고DB, ...)
+	find.do		 @PostMapping("find.do")	<=========	  - DB를 다른걸 써도 DAO만 바뀔 뿐 다른데는 많이 바뀌지 않음 
+				  사용자 요청값을 받아서 DAO 연결		통신
+				  결과값을 JSP로 전송
+				   		┃
+				   		↓
+				   	   JSP	
+  -->
 	<div class="container">
 		<div class="row">
 			<h1 class="text-center">영화목록</h1>
+			<table class="table">
+				<tr>
+					<td>
+					<form method="post" action="find.do">
+						Search:<input type="text" name="search_keyword" size="15" class="input-sm">
+						<input type="submit" value="찾기" class="btn btn-sm btn-primary">
+					</form>
+					</td>
+				</tr>
+			</table>
 			<c:forEach var="vo" items="${list }">
 			<div class="col-md-4">
 				<div class="thumbnail">

@@ -1,9 +1,0 @@
-package com.sist.databoard;
-
-import com.sist.dao.*;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class DataBoardRestController {
-	
-}

@@ -1,0 +1,6 @@
+package com.sist.xml;
+// newssearch.naver.com/search.naver 
+
+public class NewsManager {
+
+}

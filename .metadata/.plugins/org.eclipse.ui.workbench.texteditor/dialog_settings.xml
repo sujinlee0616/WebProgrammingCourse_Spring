@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="addBtn" key="selection"/>
+		<item value="commons-" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="commons-"/>
+			<item value="mongo"/>
+			<item value="delBtn"/>
+			<item value="updateBtn"/>
 			<item value="addBtn"/>
 			<item value="parser"/>
 			<item value="json"/>
 			<item value="ㄴㅅㄱ"/>
-			<item value="text-right"/>
-			<item value="첨부파일"/>
-			<item value="twitter"/>
-			<item value="empDAO"/>
 		</list>
 		<list key="replacehistory">
 		</list>

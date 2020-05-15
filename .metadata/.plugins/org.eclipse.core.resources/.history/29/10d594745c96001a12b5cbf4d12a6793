@@ -1,0 +1,7 @@
+package com.sist.xml;
+
+import java.util.*;
+
+public class Channel {
+	
+}
