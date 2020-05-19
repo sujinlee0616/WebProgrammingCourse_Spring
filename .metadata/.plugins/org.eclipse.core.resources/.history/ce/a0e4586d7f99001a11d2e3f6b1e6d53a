@@ -1,8 +1,0 @@
-package com.sist.dao;
-
-public class EmpVO {
-	private int empno;
-	private String ename;
-	private String job;
-	private int mgr;
-}
