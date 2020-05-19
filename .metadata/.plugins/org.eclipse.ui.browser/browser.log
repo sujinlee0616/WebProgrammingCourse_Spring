@@ -10,3 +10,15 @@
 5월 13, 2020 09:04:36.55 NEW SESSION
 5월 13, 2020 09:04:36.55 [18940:11812:0513/090436.552:ERROR:browser_switcher_service.cc(238)] XXX Init()
 5월 13, 2020 09:04:42.68 [18940:11812:0513/090442.689:ERROR:device_event_log_impl.cc(162)] [09:04:42.690] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 18, 2020 18:53:22.00 NEW SESSION
+5월 18, 2020 18:53:22.00 [10152:2420:0518/185322.002:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 18, 2020 18:53:33.39 [10152:2420:0518/185333.398:ERROR:device_event_log_impl.cc(162)] [18:53:33.399] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 19, 2020 09:33:12.66 NEW SESSION
+5월 19, 2020 09:33:12.66 [9900:14132:0519/093312.659:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 19, 2020 09:33:16.36 [9900:14132:0519/093316.369:ERROR:device_event_log_impl.cc(162)] [09:33:16.369] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 19, 2020 17:51:02.11 [9900:14132:0519/175102.115:ERROR:CONSOLE(48)] "Uncaught (in promise) URIError: URI malformed", source: devtools://devtools/bundled/persistence/Automapping.js (48)
+5월 19, 2020 18:53:43.46 [9900:10128:0519/185343.468:ERROR:mcs_client.cc(755)] Received close command, resetting connection.
+5월 19, 2020 19:06:44.46 [20960:18664:0519/190644.465:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 19, 2020 19:06:45.80 [20960:18664:0519/190645.802:ERROR:device_event_log_impl.cc(162)] [19:06:45.802] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.

@@ -1,8 +1,0 @@
-package com.sist.xml;
-// newssearch.naver.com/search.naver?
-// ====================  ============
-// 서버주소 				 MVC 구조구나!! (*.do가 아니라 .naver인듯) 
-
-public class NewsManager {
-	
-}

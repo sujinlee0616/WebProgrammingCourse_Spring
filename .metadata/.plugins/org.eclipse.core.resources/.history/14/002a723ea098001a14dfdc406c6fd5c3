@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!-- [tiles.xml]
+	 - tiles에서 각 부분이 어떤 JSP 파일인지 지정 ex) main은 무슨 파일을 불러오고, menu는 무슨 파일을 불러오고... -->
+<tiles-definitions>
+	<!-- return형 하나 나올 때마다 <definition> 하나 설정해줘야 -->
+	<!-- Controller에서 아래와 같이 main을 return하면 "/WEB-INF/main/main.jsp"을 리턴하게 설정 
+	public String main_main(Model model)
+	{
+		return "main";
+	}-->
+	<definition name="main" template="/WEB-INF/main/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/main/menu.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/main/content.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
+	</definition>
+	<!-- 
+		public String board_list(Model model)
+		{
+			return "board/list";
+		}
+	 -->	 
+	<definition name="board/list" extends="main">  <!-- 얘는 main을 상속받고 content 부분만 바꾸면 됨 -->
+		<put-attribute name="content" value=""/>
+	</definition>
+</tiles-definitions>
+
+
+
+
+
+

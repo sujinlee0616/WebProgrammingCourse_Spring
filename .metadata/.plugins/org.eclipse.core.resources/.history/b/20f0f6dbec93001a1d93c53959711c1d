@@ -1,7 +1,0 @@
-package com.sist.dao;
-
-import java.util.*;
-
-public interface MovieMapper {
-
-}

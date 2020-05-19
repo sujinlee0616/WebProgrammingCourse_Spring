@@ -1,0 +1,25 @@
+package com.sist.tiles;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainController {
+	@RequestMapping("main.do")
+	public String main_page()
+	{
+		return "main";
+	}
+	
+	@RequestMapping("board/list.do")
+	public String main_page()
+	{
+		return "board/list";
+	}
+	
+	@RequestMapping("notice/list.do")
+	{
+		return "notice/list";
+	}
+
+}

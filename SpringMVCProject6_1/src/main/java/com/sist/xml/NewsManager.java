@@ -9,9 +9,9 @@ package com.sist.xml;
 // - <item> 태그 안의 태그들은 <태그>데이터</태그>로 구성되어 있음 ex) <title>, <link>, <description>
 //    ===> <item> 하위 태그들은 ★변수★
 // - 마치, XE > Table > Column 처럼 rss > item > item 하위 태그들 
-// - Rss 클래스 안에 Channel을 갖다놓고 getter/setter 만들고, 
+// - ★Rss 클래스 안에 Channel을 갖다놓고 getter/setter 만들고, 
 //   Channel 클래스 안에 Item을 갖다놓고 getter/setter 만들고,
-//   Item 클래스 안에 변수설정하고 getter/setter 만든다.
+//   Item 클래스 안에 변수설정하고 getter/setter 만든다.★
 
 import java.util.*;
 import javax.xml.bind.JAXBContext;

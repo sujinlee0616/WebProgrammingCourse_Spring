@@ -1,8 +1,0 @@
-package com.sist.xml;
-// newssearch.naver.com/search.naver
-// ====================
-// 서버주소 
-
-public class NewsManager {
-
-}

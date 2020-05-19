@@ -1,7 +1,0 @@
-package com.sist.xml;
-
-public class Rss {
-	private Channel channel=new Channel();
-}
-
-

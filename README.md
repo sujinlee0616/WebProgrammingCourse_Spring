@@ -19,7 +19,11 @@
   3) RestController, Ajax     
 - SpringMVCProject5★: MongoDB      
   : MongoDB로 네이버 영화 데이터 수집, 검색         
-- SpringMVCProject6★: XML      
+- SpringMVCProject6★: XML     
+- SpringTilesProject1     
+- SpringTilesProject2       
+- SpringAOPProject1     
+- SpringAOPProject2          
        
 # WebProgrammingCourse_Spring        
        

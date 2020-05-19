@@ -1,0 +1,10 @@
+package com.sist.common;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Component // 메모리 할당 
+@Aspect // 공통 기반 
+public class LogAspect {
+
+}
