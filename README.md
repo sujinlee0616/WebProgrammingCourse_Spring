@@ -22,7 +22,7 @@
 - SpringMVCProject6★: XML     
 - SpringTilesProject1     
 - SpringTilesProject2       
-- SpringAOPProject1     
+- SpringAOPProject1: AOP 이론     
 - SpringAOPProject2          
        
 # WebProgrammingCourse_Spring        
