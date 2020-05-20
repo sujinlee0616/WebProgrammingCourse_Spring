@@ -22,8 +22,10 @@
 - SpringMVCProject6★: XML     
 - SpringTilesProject1     
 - SpringTilesProject2       
-- SpringAOPProject1: AOP 이론     
+- SpringAOPProject1: AOP 이론      
+  : JoinPoint, PointCut      
 - SpringAOPProject2          
+- SpringSessionProject1: @Transactional, React(props,state)        
        
 # WebProgrammingCourse_Spring        
        
