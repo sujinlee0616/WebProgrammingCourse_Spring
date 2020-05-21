@@ -49,7 +49,6 @@ h1 {
  	3. arrow function
  		var H=()=>{}
  		: 'function'이라는 글자가 사라지고 대신 ()뒤에 =>이 붙는다.
- 
   -->
 </head>
 <body>
@@ -90,7 +89,6 @@ h1 {
 			axios.get('http://localhost/web/main/music_data.do').then((result)=>{
 				console.log(result.data);
 				// 저장 
-				// this.state.music=result.data;
 				// render를 호출해야 (다시 render해야) ==> setState해서 다시 render하면 됨  
 				this.setState({music:result.data}); 
 				

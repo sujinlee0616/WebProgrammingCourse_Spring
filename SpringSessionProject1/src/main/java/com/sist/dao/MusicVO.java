@@ -15,7 +15,7 @@ public class MusicVO {
 	private int idcrement;
 	private String state;
 	private String key;
-	private int hit; // 조회수 ==> 조회수 증가 Trigger 내일 만들 예정
+	private int hit; // 조회수 ==> 조회수 증가 Trigger/function 내일 만들 예정
 	
 	// private : 은닉화
 	// @Getter,@Setter ===> 캡슐화 

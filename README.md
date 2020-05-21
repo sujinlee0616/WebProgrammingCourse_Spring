@@ -25,7 +25,8 @@
 - SpringAOPProject1: AOP 이론      
   : JoinPoint, PointCut      
 - SpringAOPProject2          
-- SpringSessionProject1: @Transactional, React(props,state)        
-       
+- SpringSessionProject1: React(props,state), Session, Cookie, Trigger            
+          
+      
 # WebProgrammingCourse_Spring        
        

@@ -9,14 +9,37 @@
 <style type="text/css">
 .row {
    margin: 0px auto;
-   width:800px;
-}
-h1 {
-  text-align: center;
+   width:400px;
 }
 </style>
 </head>
 <body>
-
+	<div class="container">
+		<div class="row">
+			<h2 class="text-center">로그인</h2>
+			<form method="post" action="login_ok.do">
+				<table class="table">
+					<tr>
+						<th width="30%" class="text-right danger">ID</th>
+						<td width="70%">
+							<input type="text" name="id" class="input-sm" size="15">
+						</td>				
+					</tr>
+					<tr>
+						<th width="30%" class="text-right danger">Password</th>
+						<td width="70%">
+							<input type="password" name="pwd" class="input-sm" size="15">
+						</td>				
+					</tr>
+					<tr>
+						<td colspan="2" class="text-center">
+							<button type="submit" class="btn btn-sm btn-success">로그인</button>
+							<input type="button" class="btn btn-sm btn-success" value="취소">
+						</td>				
+					</tr>
+				</table>	
+			</form>	
+		</div>
+	</div>
 </body>
 </html>
