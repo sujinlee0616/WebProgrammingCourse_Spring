@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" class="text-center">
-							<button type="submit" class="btn btn-sm btn-success">로그인</button>
+							<button type="submit" class="btn btn-sm btn-danger">로그인</button>
 							<input type="button" class="btn btn-sm btn-success" value="취소">
 						</td>				
 					</tr>

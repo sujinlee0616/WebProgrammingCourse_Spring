@@ -24,6 +24,7 @@ h1 {
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+	<!--============================== #root: React에 의해 데이터(js의 return값들) 들어가는 부분  ============================== -->
 	<div class="container" id="root"></div>
 	<script type="text/babel">
 		// ====================== [Detail]: 아래의 3개 클래스를 조립★★★  ======================
@@ -102,6 +103,16 @@ h1 {
 		// - div #root에다가 detail 리턴값 포함시킨다.
 		ReactDOM.render(<Detail/>, document.getElementById('root'));
 	</script>
+
+
+	<!--============================== 댓글 영역: React와 무관  ============================== -->
+	<c:if test="${sessionScope.id!=null }">
+		<div class="container">
+			<div class="row">
+				<h2 class="text-center">댓글</h2>
+			</div>
+		</div>
+	</c:if>
 
 </body>
 </html>
