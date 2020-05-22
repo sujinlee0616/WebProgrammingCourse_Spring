@@ -26,11 +26,17 @@
 	
 	<!-- SqlSessionTemplate = DataSource + SqlSessionFactory -->
 	
-	<!-- Mapper 전송 -->
-	<bean id="mapper"
+	<!-- Mapper 전송 : Mapper 한 개 씩-->
+	<!-- <bean id="mapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
 		p:mapperInterface="com.sist.dao.MusicMapper"	
+	/> -->
+	<!-- Mapper 전송: 같은 패키지내에 있는 여러개의 Mapper들을 한 번에 등록 -->
+	<bean id="mapper"
+		class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:sqlSessionFactory-ref="ssf"
+		p:basePackage="com.sist.dao"	
 	/>
 
 </beans>

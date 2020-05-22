@@ -2,34 +2,7 @@ package com.sist.dao;
 
 import java.util.*;
 import org.apache.ibatis.annotations.Select;
-
-/*
- *  public void insert(){}
- *  public void update(){}
- *  
- *  @Transactional 
- *  public void replyInsert()
- *  {
- *  	try
- *  	{
- *  		ssf.openSession();  // 오토커밋 해제 
- *  		insert(); // 정상  ==> 
- *  		update(); // 오류  ==> 
- *  		insert(); // 정상  ==> 
- *  		// 위의 셋 모두가 커밋날리거나 OR 셋 모두 다 날아가지 않아야 한다면 ===>  
- *  		commit(); 
- *  		    
- *  	}catch(Exception ex)
- *  	{
- *  		rollback();
- *  	}
- *  	finally
- *  	{
- *  		conn.setAutoCommit(); // 원래대로 오토커밋으로 돌려놓는다 
- *  	}
- *  }
- *  
- */
+import org.apache.ibatis.session.SqlSession;
 
 public interface MusicMapper {
 	
@@ -57,8 +30,4 @@ public interface MusicMapper {
 	
 	
 }
-
-
-
-
 
