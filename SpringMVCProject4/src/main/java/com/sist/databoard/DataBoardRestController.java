@@ -1,6 +1,6 @@
 package com.sist.databoard;
 
-// RestController: javascript¿Í ¿¬°á ½Ã¿¡ »ç¿ë ex) AJAX Ã³¸®
+//RestController: javascriptì™€ ì—°ê²° ì‹œì— ì‚¬ìš© ex) AJAX ì²˜ë¦¬
 import com.sist.dao.*;
 import java.io.File;
 import java.util.StringTokenizer;
@@ -14,13 +14,13 @@ public class DataBoardRestController {
 	@Autowired
 	private DataBoardDAO dao;
 	
-	// [±Û ¼öÁ¤] - AJAX Ã³¸® 
+	// [ê¸€ ìˆ˜ì •] - AJAX ì²˜ë¦¬ 
 	@RequestMapping("update_ok.do")
 	public String databoard_update_ok(DataBoardVO vo)
 	{
 		String result="";
 		
-		// ºñ¹Ğ¹øÈ£ Ã¼Å© 
+		// ë¹„ë°€ë²ˆí˜¸ ì²´í¬ 
 		String db_pwd=dao.databoardGetPassword(vo.getNo());
 		if(db_pwd.equals(vo.getPwd()))
 		{
@@ -34,7 +34,7 @@ public class DataBoardRestController {
 		return result;
 	}
 	
-	// [±Û »èÁ¦] - AJAX Ã³¸®  
+	// [ê¸€ ì‚­ì œ] - AJAX ì²˜ë¦¬   
 	@RequestMapping("delete_ok.do")
 	public String databoard_delete_ok(int no,String pwd)
 	{
@@ -42,16 +42,16 @@ public class DataBoardRestController {
 		DataBoardVO vo=dao.databoardFileInfoData(no);
 		boolean bCheck=dao.databoardDelete(no, pwd);
 		
-		// [ºñ¹øÀÌ ¸ÂÀ» ¶§] (DAO¿¡¼­ ÀÌ¹Ì ºñ¹ø Ã¼Å©ÇßÀ½)
+		// [ë¹„ë²ˆì´ ë§ì„ ë•Œ] (DAOì—ì„œ ì´ë¯¸ ë¹„ë²ˆ ì²´í¬í–ˆìŒ)
 		if(bCheck==true) 
 		{
-			// 1. °Ô½Ã±Û »èÁ¦ - ºñ¹ø ¸ÂÀ¸¸é DAO¿¡¼­ »èÁ¦½ÃÅ´  
+			// 1. ê²Œì‹œê¸€ ì‚­ì œ - ë¹„ë²ˆ ë§ìœ¼ë©´ DAOì—ì„œ ì‚­ì œì‹œí‚´  
 			// 2,3
 			result="OK";
 			try 
 			{
-				// 2. ÆÄÀÏ »èÁ¦ 
-				// - °Ô½Ã±Û¿¡ ÆÄÀÏÀÌ ÀÖÀ¸¸é(ÆÄÀÏ °³¼ö°¡ 0°³ ÀÌ»óÀÌ¸é) ÆÄÀÏ »èÁ¦  
+				// 2. íŒŒì¼ ì‚­ì œ 
+				// - ê²Œì‹œê¸€ì— íŒŒì¼ì´ ìˆìœ¼ë©´(íŒŒì¼ ê°œìˆ˜ê°€ 0ê°œ ì´ìƒì´ë©´) íŒŒì¼ ì‚­ì œ  
 				if(vo.getFilecount()>0) 
 				{
 					StringTokenizer st=new StringTokenizer(vo.getFilename(),",");
@@ -61,13 +61,13 @@ public class DataBoardRestController {
 						file.delete();
 					}
 				}
-				// 3. »ó¼¼º¸±â ÇÏ´Ü¿¡ R·Î ±×¸° ÀÌ¹ÌÁö ÆÄÀÏ »èÁ¦
-				// - RÀº Linux ±â¹İÀÌ¶ó¼­ °æ·Î¸¦ \\ ½½·¯½Ã µÎ °³·Î Áà¾ßÇÑ´Ù. 
+				// 3. ìƒì„¸ë³´ê¸° í•˜ë‹¨ì— Rë¡œ ê·¸ë¦° ì´ë¯¸ì§€ íŒŒì¼ ì‚­ì œ
+				// - Rì€ Linux ê¸°ë°˜ì´ë¼ì„œ ê²½ë¡œë¥¼ \\ ìŠ¬ëŸ¬ì‹œ ë‘ ê°œë¡œ ì¤˜ì•¼í•œë‹¤. 
 				File file2=new File("C:\\springDev\\springStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringMVCProject4\\board\\"+no+".png");
 				file2.delete();
 			} catch (Exception ex) {}
 		}
-		// [ºñ¹øÀÌ Æ²¸± ¶§] (DAO¿¡¼­ ÀÌ¹Ì ºñ¹ø Ã¼Å©ÇßÀ½)
+		// [ë¹„ë²ˆì´ í‹€ë¦´ ë•Œ] (DAOì—ì„œ ì´ë¯¸ ë¹„ë²ˆ ì²´í¬í–ˆìŒ)
 		else
 		{
 			result="NOPWD";

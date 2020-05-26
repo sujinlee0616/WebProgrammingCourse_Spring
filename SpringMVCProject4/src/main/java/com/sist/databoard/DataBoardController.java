@@ -32,11 +32,11 @@ public class DataBoardController {
 	@Autowired
 	private RManager rm;	
 	
-	// [±Û ¸ñ·Ï]
+	// [ê¸€ ëª©ë¡]
 	@RequestMapping("list.do")
 	public String board_list(Model model, String page)
 	{
-		// 1. ¸Å°³º¯¼ö => »ç¿ëÀÚÀÇ ¿äÃ»°ªÀ» ¹Ş´Â´Ù. 
+		// 1. ë§¤ê°œë³€ìˆ˜ => ì‚¬ìš©ìì˜ ìš”ì²­ê°’ì„ ë°›ëŠ”ë‹¤. 
 		if (page == null)
 			page = "1";
 		int curpage = Integer.parseInt(page);
@@ -44,22 +44,22 @@ public class DataBoardController {
 		int start = rowSize * (curpage - 1) + 1;
 		int end = rowSize * curpage;
 
-		// 2. ¿äÃ»¿¡ ´ëÇÑ Ã³¸®
+		// 2. ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬
 		Map map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
 		List<DataBoardVO> list = dao.databoardListData(map);
 		int totalpage = dao.databoardTotalpage();
 
-		// 3. Ã³¸®µÈ °á°ú°ª Àü¼Û
+		// 3. ì²˜ë¦¬ëœ ê²°ê³¼ê°’ ì „ì†¡
 		model.addAttribute("list", list);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 
 		return "board/list";
 		/* 
-		 * application-context.xml¿¡¼­ ¾Æ·¡¿Í °°ÀÌ ÄÚµùÇßÀ¸¹Ç·Î prefix, suffix°¡ ºÙ¾î¼­ 
-		 * return "board/list";´Â   "/board/list.jsp";°¡ µÈ´Ù.
+		 * application-context.xmlì—ì„œ ì•„ë˜ì™€ ê°™ì´ ì½”ë”©í–ˆìœ¼ë¯€ë¡œ prefix, suffixê°€ ë¶™ì–´ì„œ 
+		 * return "board/list";ëŠ”   "/board/list.jsp";ê°€ ëœë‹¤.
 		 * <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
 				p:prefix="/"
 				p:suffix=".jsp"
@@ -67,14 +67,14 @@ public class DataBoardController {
 		 */
 	}
 	
-	// [±Û¾²±â] - ±Û¾²±â È­¸é¸¸ º¸¿©ÁÜ
+	// [ê¸€ì“°ê¸°] - ê¸€ì“°ê¸° í™”ë©´ë§Œ ë³´ì—¬ì¤Œ
 	@RequestMapping("insert.do")
 	public String board_insert()
 	{
 		return "board/insert";		
 	}
 	
-	// [±Û¾²±â] - ½ÇÁ¦Ã³¸®
+	// [ê¸€ì“°ê¸°] - ì‹¤ì œì²˜ë¦¬
 	@RequestMapping("insert_ok.do")
 	public String board_insert_ok(DataBoardVO vo) throws Exception
 	{
@@ -83,19 +83,19 @@ public class DataBoardController {
 		String temp2="";
 		if(list!=null && list.size()>0)
 		{
-			for(MultipartFile mf:list) // mf: ÆÄÀÏ ÇÏ³ª 
+			for(MultipartFile mf:list) // mf: íŒŒì¼ í•˜ë‚˜ 
 			{
 				String fn=mf.getOriginalFilename();
 				File file=new File("c:\\upload\\"+fn);
-				mf.transferTo(file); // transferTo: ½ÇÁ¦ ¹°¸®°æ·Î¿¡ ÆÄÀÏÀ» ¿Å°ÜÁØ´Ù. 
-				// ¸¸¾à ¹°¸®°æ·Î¿¡ ÀúÀåÀ» ¾È ÇØÁÖ¸é ÀÓ½Ã°æ·Î¿¡ Àá½Ã ÀúÀåµÇ¾ú´Ù°¡ »ç¶óÁö°Ô µÈ´Ù. 
+				mf.transferTo(file);  // transferTo: ì‹¤ì œ ë¬¼ë¦¬ê²½ë¡œì— íŒŒì¼ì„ ì˜®ê²¨ì¤€ë‹¤. 
+				// ë§Œì•½ ë¬¼ë¦¬ê²½ë¡œì— ì €ì¥ì„ ì•ˆ í•´ì£¼ë©´ ì„ì‹œê²½ë¡œì— ì ì‹œ ì €ì¥ë˜ì—ˆë‹¤ê°€ ì‚¬ë¼ì§€ê²Œ ëœë‹¤. 
 				
-				// 1.jpg,2.jpg,3.jpg.... ÀÌ·±½ÄÀ¸·Î ÀúÀåÇÑ ÈÄ ³ªÁß¿¡ , Àß¶ó¼­ ¾²ÀÚ. 
+				// 1.jpg,2.jpg,3.jpg.... ì´ëŸ°ì‹ìœ¼ë¡œ ì €ì¥í•œ í›„ ë‚˜ì¤‘ì— , ì˜ë¼ì„œ ì“°ì. 
 				temp1+=fn+",";
 				temp2+=file.length()+",";
 			}
 			
-			// ¸Ç ¸¶Áö¸· ,(ÄŞ¸¶) Á¦°Å
+			// ë§¨ ë§ˆì§€ë§‰ ,(ì½¤ë§ˆ) ì œê±°
 			temp1=temp1.substring(0,temp1.lastIndexOf(",")); 
 			temp2=temp2.substring(0,temp2.lastIndexOf(",")); 
 			
@@ -103,7 +103,7 @@ public class DataBoardController {
 			vo.setFilename(temp1);
 			vo.setFilesize(temp2);
 		}
-		else // ÆÄÀÏÀÌ ÇÏ³ªµµ ¾÷·Îµå µÇÁö ¾ÊÀº °æ¿ì 
+		else // íŒŒì¼ì´ í•˜ë‚˜ë„ ì—…ë¡œë“œ ë˜ì§€ ì•Šì€ ê²½ìš° 
 		{
 			vo.setFilecount(0);
 			vo.setFilename("");
@@ -114,7 +114,7 @@ public class DataBoardController {
 		return "redirect:list.do";
 	}
 	
-	// [»ó¼¼º¸±â]
+	// [ìƒì„¸ë³´ê¸°]
 	@RequestMapping("detail.do")
 	public String board_detail(Model model,int no)
 	{
@@ -138,11 +138,11 @@ public class DataBoardController {
 			model.addAttribute("fList",fList);
 			model.addAttribute("sList",sList);
 			
-			// fList, sList¸¦ ÇÏ³ªÀÇ List·Î ¹­¾î¾ßÁö, fList[0]°ú sList[0] ÀÌ·±½ÄÀ¸·Î index ¹øÈ£°¡ °°Àº fList,sList¸¦ for¹®À¸·Î ÇÑ ¹ø¿¡ Ãâ·ÂÇÒ ¼ö ÀÖ´Ù.  
+			// fList, sListë¥¼ í•˜ë‚˜ì˜ Listë¡œ ë¬¶ì–´ì•¼ì§€, fList[0]ê³¼ sList[0] ì´ëŸ°ì‹ìœ¼ë¡œ index ë²ˆí˜¸ê°€ ê°™ì€ fList,sListë¥¼ forë¬¸ìœ¼ë¡œ í•œ ë²ˆì— ì¶œë ¥í•  ìˆ˜ ìˆë‹¤.    
 		}
 		model.addAttribute("vo",vo);
 		
-		// ¡Ú¡Ú¡Ú R·Î ¸¸µç ±×·¡ÇÁ Ãâ·Â ¡Ú¡Ú¡Ú
+		// â˜…â˜…â˜… Rë¡œ ë§Œë“  ê·¸ë˜í”„ ì¶œë ¥ â˜…â˜…â˜…
 		try {
 			FileWriter fw=new FileWriter("c:\\data\\board.txt");
 			fw.write(vo.getContent()+"\r\n");
@@ -155,7 +155,7 @@ public class DataBoardController {
 		
 	}
 	
-	// [»ó¼¼º¸±â > ÆÄÀÏ ´Ù¿î·Îµå] 
+	// [ìƒì„¸ë³´ê¸° > íŒŒì¼ ë‹¤ìš´ë¡œë“œ] 
 	@RequestMapping("download.do")
 	public void databoard_download(String fn,HttpServletResponse response)
 	{
@@ -166,19 +166,19 @@ public class DataBoardController {
 					+ URLEncoder.encode(fn,"UTF-8"));
 			response.setContentLength((int)file.length());
 			
-			// ¼­¹ö => c:\\upload\\a.jpg ¸¦ ÀĞ¾î¼­ Å¬¶óÀÌ¾ğÆ®ÇÑÅ× º¸³¿  
-			// ¼­¹ö¿¡¼­ Å¬¶óÀÌ¾ğÆ®ÇÑÅ× º¹»çÇØÁÜ 
+			// ì„œë²„ => c:\\upload\\a.jpg ë¥¼ ì½ì–´ì„œ í´ë¼ì´ì–¸íŠ¸í•œí…Œ ë³´ëƒ„  
+			// ì„œë²„ì—ì„œ í´ë¼ì´ì–¸íŠ¸í•œí…Œ ë³µì‚¬í•´ì¤Œ 
 			BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
-			// Å¬¶óÀÌ¾ğÆ® ¿µ¿ª 
+			// í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ 
 			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
 			
 			int i=0;
 			byte[] buffer=new byte[1024];
 			
-			// i: byte°³¼ö. ==> ¸î ¹ÙÀÌÆ® ÀĞ¾ú´ÂÁö 
-			while((i=bis.read(buffer, 0, 1024))!=-1) // ¹®ÀåÀÌ ³¡³ª±â Àü±îÁö ÀĞ¾î¶ó 
+			// i: byteê°œìˆ˜. ==> ëª‡ ë°”ì´íŠ¸ ì½ì—ˆëŠ”ì§€ 
+			while((i=bis.read(buffer, 0, 1024))!=-1) // ë¬¸ì¥ì´ ëë‚˜ê¸° ì „ê¹Œì§€ ì½ì–´ë¼ 
 			{
-				bos.write(buffer, 0, i); // ==> ÆÄÀÏÅ©±â ¹ÙÀÌÆ®¼ö¸¸Å­ writeÇØ¶ó
+				bos.write(buffer, 0, i); // ==> íŒŒì¼í¬ê¸° ë°”ì´íŠ¸ìˆ˜ë§Œí¼ writeí•´ë¼
 			}
 			bis.close();
 			bos.close();
@@ -186,7 +186,7 @@ public class DataBoardController {
 		} catch (Exception ex) {}
 	}
 	
-	// [¼öÁ¤ÇÏ±â] - ¼öÁ¤ÇÏ±â È­¸é º¸¿©ÁÜ. ¼öÁ¤ Æû¿¡ ±Û Á¤º¸¸¦ ºÒ·¯¿Í¼­ ³Ö¾îÁØ´Ù
+	// [ìˆ˜ì •í•˜ê¸°] - ìˆ˜ì •í•˜ê¸° í™”ë©´ ë³´ì—¬ì¤Œ. ìˆ˜ì • í¼ì— ê¸€ ì •ë³´ë¥¼ ë¶ˆëŸ¬ì™€ì„œ ë„£ì–´ì¤€ë‹¤
 	@RequestMapping("update.do")
 	public String update_board(Model model,int no)
 	{
@@ -195,15 +195,15 @@ public class DataBoardController {
 		return "board/update";
 	}
 	
-	// [»èÁ¦ÇÏ±â] - È­¸éÃâ·Â. no ³Ñ°ÜÁà¾ßÇÔ. 
+	// [ì‚­ì œí•˜ê¸°] - í™”ë©´ì¶œë ¥. no ë„˜ê²¨ì¤˜ì•¼í•¨. 
 	/*
 	 *    JSP ==> DispatcherServlet ==> @Controller 
-	 *      							=========== @RequestMapping ==> °á°ú°ª Ãâ·Â(JSP) 
+	 *      							=========== @RequestMapping ==> ê²°ê³¼ê°’ ì¶œë ¥(JSP) 
 	 *      														DAO
 	 *      														Model
 	 */
 	@RequestMapping("delete.do")
-	public String delete_board(Model model,int no) // no º¸³»Áà¾ßÇØ¼­ model ÇÊ¿äÇÔ 
+	public String delete_board(Model model,int no) // no ë³´ë‚´ì¤˜ì•¼í•´ì„œ model í•„ìš”í•¨ 
 	{
 		model.addAttribute("no",no);
 		return "board/delete";

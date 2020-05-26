@@ -10,9 +10,9 @@ import org.rosuda.REngine.Rserve.RConnection;
 import org.springframework.stereotype.Component;
 
 /*
- *  	Spring ==> ¼öÁı (Hadoop) ==> mapreduce, spark: ºĞ¼® ==> R¿¡¼­ ¸¸µç ±×·¡ÇÁ ==> React·Î Ãâ·Â  
+ *  	Spring ==> ìˆ˜ì§‘ (Hadoop) ==> mapreduce, spark: ë¶„ì„ ==> Rì—ì„œ ë§Œë“  ê·¸ë˜í”„ ==> Reactë¡œ ì¶œë ¥  
  *                                  ===============							  ===========
- *                                   mongodb »ç¿ë							  Android¿¡¼­µµ Ãâ·Â °¡´É(Kotlin ¶Ç´Â React-Native ÀÌ¿ë)
+ *                                   mongodb ì‚¬ìš©							  Androidì—ì„œë„ ì¶œë ¥ ê°€ëŠ¥(Kotlin ë˜ëŠ” React-Native ì´ìš©)
  */
 
 @Component
@@ -22,23 +22,23 @@ public class RManager {
 	public void rGraph(int no)
 	{
 		try {
-			// [R ¿¬°á] ¡Ú¡Ú¡Ú 
-			// - Rserve°¡ µ¿ÀÛÇÏ°í ÀÖ¾î¾ß ÇÑ´Ù. (µğÆúÆ®:localhost. Æ¯Á¤ IP ÁöÁ¤µµ °¡´É.)
-			// - Rserver´Â R.exe·Î µ¹·ÈÀ½ 
+			// [R ì—°ê²°] â˜…â˜…â˜… 
+			// - Rserveê°€ ë™ì‘í•˜ê³  ìˆì–´ì•¼ í•œë‹¤. (ë””í´íŠ¸:localhost. íŠ¹ì • IP ì§€ì •ë„ ê°€ëŠ¥.)
+			// - RserverëŠ” R.exeë¡œ ëŒë ¸ìŒ 
 			RConnection rc=new RConnection();
 			rc.voidEval("library(rJava)"); // library import 
 			rc.voidEval("library(KoNLP)"); // library import 
-			rc.voidEval("png(\"C:/springDev/springStudy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMVCProject4/board/"+no+".png\", width=700, height=450)"); // (¸¸µé¾îÁö´Â ±×·¡ÇÁ µîÀÇ ÀÌ¹ÌÁö¸¦) png ÆÄÀÏ·Î ¸¸µé¾î¼­ ÁöÁ¤ÇÑ °æ·Î¿¡ ÀúÀåÇÏ¶ó
-			rc.voidEval("data<-readLines(\"c:/data/board.txt\")");   // voidEvalÀº send¿Í ºñ½ÁÇÑ ±â´É. 
+			rc.voidEval("png(\"C:/springDev/springStudy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SpringMVCProject4/board/"+no+".png\", width=700, height=450)"); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½) png ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
+			rc.voidEval("data<-readLines(\"c:/data/board.txt\")");   // voidEvalì€ sendì™€ ë¹„ìŠ·í•œ ê¸°ëŠ¥. 
 			rc.voidEval("data2<-sapply(data, extractNoun,USE.NAMES = F)");
-			rc.voidEval("data3<-unlist(data2)"); // unlist: 2Â÷¿ø ¹è¿­À» 1Â÷¿ø ¹è¿­·Î ¹Ù²åÀ½ 
-			rc.voidEval("data3<-gsub(\"[A-Za-z]\",\"[]\",data3)"); // ¿µ¾î¸¦ °ø¹éÀ¸·Î ¸¸µé¾î¼­ ¾ø¾Ö¶ó
-			rc.voidEval("data3<-gsub(\"[0-9]\",\"[]\",data3)"); // ¼ıÀÚ¸¦ °ø¹éÀ¸·Î ¸¸µé¾î¼­ ¾ø¾Ö¶ó (gsub: replace ÇÔ¼öÀÓ)
-			rc.voidEval("data3<-Filter(function(x){nchar(x)>=2},data3)"); // 2±ÛÀÚ ÀÌ»ó¸¸ °¡Áö°í ¿Í¶ó
+			rc.voidEval("data3<-unlist(data2)");  // unlist: 2ì°¨ì› ë°°ì—´ì„ 1ì°¨ì› ë°°ì—´ë¡œ ë°”ê¿¨ìŒ 
+			rc.voidEval("data3<-gsub(\"[A-Za-z]\",\"[]\",data3)");  // ì˜ì–´ë¥¼ ê³µë°±ìœ¼ë¡œ ë§Œë“¤ì–´ì„œ ì—†ì• ë¼
+			rc.voidEval("data3<-gsub(\"[0-9]\",\"[]\",data3)"); // ìˆ«ìë¥¼ ê³µë°±ìœ¼ë¡œ ë§Œë“¤ì–´ì„œ ì—†ì• ë¼ (gsub: replace í•¨ìˆ˜ì„)
+			rc.voidEval("data3<-Filter(function(x){nchar(x)>=2},data3)"); // 2ê¸€ì ì´ìƒë§Œ ê°€ì§€ê³  ì™€ë¼
 			
-			rc.voidEval("data4<-table(data3)"); // table: ´Ü¾î°¡ ¸î¹ø¾¿ ¾ğ±ŞµÆ´ÂÁö (È½¼ö) 
-			rc.voidEval("data5<-head(sort(data4,decreasing = T),10)"); // °³¼ö ¸¹Àº ¼øÀ¸·Î 10°³ °¡Á®¿Í¶ó 
-			rc.voidEval("barplot(data5,col=rainbow(15))"); // ±×·¡ÇÁ ±×·Á´Ş¶ó
+			rc.voidEval("data4<-table(data3)"); // table: ë‹¨ì–´ê°€ ëª‡ë²ˆì”© ì–¸ê¸‰ëëŠ”ì§€ (íšŸìˆ˜) 
+			rc.voidEval("data5<-head(sort(data4,decreasing = T),10)"); // ê°œìˆ˜ ë§ì€ ìˆœìœ¼ë¡œ 10ê°œ ê°€ì ¸ì™€ë¼ 
+			rc.voidEval("barplot(data5,col=rainbow(15))"); // ê·¸ë˜í”„ ê·¸ë ¤ë‹¬ë¼
 			rc.voidEval("dev.off()");
 			rc.close(); 
 		} catch (Exception ex) {
@@ -52,8 +52,8 @@ public class RManager {
 	/*public static void main(String[] args) {
 		try 
 		{
-			// [¹æ¹ı1. µ¥ÀÌÅÍ CSVÆÄÀÏ·Î ÃßÃâÇÏ±â]
-			// ¸ŞÀÎ µ¹¸®¸é "C:\\upload" °æ·Î¿¡ CSV ÆÄÀÏÀÌ ¸¸µé¾îÁø´Ù. 
+			// [ë°©ë²•1. ë°ì´í„° CSVíŒŒì¼ë¡œ ì¶”ì¶œí•˜ê¸°]
+			// ë©”ì¸ ëŒë¦¬ë©´ "C:\\upload" ê²½ë¡œì— CSV íŒŒì¼ì´ ë§Œë“¤ì–´ì§„ë‹¤. 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url="jdbc:oracle:thin:@localhost:1521:XE";
 			Connection conn=DriverManager.getConnection(url,"hr","happy");
@@ -76,9 +76,9 @@ public class RManager {
 			fw.close();
 			
 			
-			// [¹æ¹ı2. µ¥ÀÌÅÍ CSVÆÄÀÏ·Î ÃßÃâÇÏ±â]
+			// [ë°©ë²•2. ë°ì´í„° CSVíŒŒì¼ë¡œ ì¶”ì¶œí•˜ê¸°]
 			RConnection rc=new RConnection();
-			rc.voidEval(""); // voidEval("R¸í·É¾î"): R¸í·É¾î¸¦ ÀÔ·ÂÇÏ¸é send ÇØÁØ´Ù.
+			rc.voidEval(""); // voidEval("Rëª…ë ¹ì–´"): Rëª…ë ¹ì–´ë¥¼ ì…ë ¥í•˜ë©´ send í•´ì¤€ë‹¤.
 			rc.voidEval("emp<-read.csv(\"c:/upload/emp.csv\",header=T,sep=\",\")"); // header=T(True)
 			
 			

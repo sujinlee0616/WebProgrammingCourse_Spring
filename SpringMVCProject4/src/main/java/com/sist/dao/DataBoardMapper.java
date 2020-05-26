@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 public interface DataBoardMapper {
 	
-	// [±Û ¸ñ·Ï] 
+	// [ê¸€ ëª©ë¡] 
 	@Select("SELECT no,subject,name,regdate,hit,num "
 			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
 			+ "FROM (SELECT no,subject,name,regdate,hit "
@@ -18,11 +18,11 @@ public interface DataBoardMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<DataBoardVO> databoardListData(Map map);
 	
-	// [±Û¸ñ·Ï] total page
+	// [ê¸€ëª©ë¡] total page
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM spring_databoard")
 	public int databoardTotalpage();
 	
-	// [±Û¾²±â]
+	// [ê¸€ì“°ê¸°]
 	@SelectKey(keyProperty="no", resultType=int.class, before=true,
 			statement="SELECT NVL(MAX(no)+1,1) as no FROM spring_databoard")
 	@Insert("INSERT INTO spring_databoard VALUES("
@@ -30,32 +30,32 @@ public interface DataBoardMapper {
 			+ "SYSDATE,0,#{filename},#{filesize},#{filecount})")
 	public void databoardInsert(DataBoardVO vo);
 	
-	// [»ó¼¼º¸±â] - 1. Á¶È¸¼ö Áõ°¡
+	// [ìƒì„¸ë³´ê¸°] - 1. ì¡°íšŒìˆ˜ ì¦ê°€
 	@Update("UPDATE spring_databoard SET "
 			+ "hit=hit+1 "
 			+ "WHERE no=#{no}")
 	public void hitIncrement(int no);
-	// 2. ±Û ³»¿ë ³ëÃâ 
+	// 2. ê¸€ ë‚´ìš© ë…¸ì¶œ 
 	@Select("SELECT no,name,subject,content,regdate,hit,filename,filesize,filecount "
 			+ "FROM spring_databoard "
 			+ "WHERE no=#{no}")
 	public DataBoardVO databoardDetailData(int no);
 	
-	// [¼öÁ¤ÇÏ±â] - 1. Password Ã¼Å© 
+	// [ìˆ˜ì •í•˜ê¸°] - 1. Password ì²´í¬ 
 	@Select("SELECT pwd FROM spring_databoard "
 			+ "WHERE no=#{no}")
 	public String databoardGetPassword(int no);
-	// 2. ±Û ³»¿ë ¼öÁ¤
+	// 2. ê¸€ ë‚´ìš© ìˆ˜ì •
 	@Update("UPDATE spring_databoard SET "
 			+ "name=#{name},subject=#{subject},content=#{content} "
 			+ "WHERE no=#{no}")
 	public void databoardUpdate(DataBoardVO vo);
 	
-	// [»èÁ¦ÇÏ±â] - 1. »èÁ¦ÇÏ·Á´Â °Ô½Ã±Û¿¡ ÆÄÀÏÀÌ ¾÷·Îµå µÇ¾î ÀÖ´ÂÁö È®ÀÎ 
+	// [ì‚­ì œí•˜ê¸°] - 1. ì‚­ì œí•˜ë ¤ëŠ” ê²Œì‹œê¸€ì— íŒŒì¼ì´ ì—…ë¡œë“œ ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸ 
 	@Select("SELECT filename,filecount FROM spring_databoard "
 			+ "WHERE no=#{no}")
 	public DataBoardVO databoardFileInfoData(int no);
-	// 2.°Ô½ÃÆÇ µ¥ÀÌÅÍ »èÁ¦
+	// 2.ê²Œì‹œíŒ ë°ì´í„° ì‚­ì œ
 	@Delete("DELETE FROM spring_databoard "
 			+ "WHERE no=#{no}")
 	public void databoardDelete(int no);

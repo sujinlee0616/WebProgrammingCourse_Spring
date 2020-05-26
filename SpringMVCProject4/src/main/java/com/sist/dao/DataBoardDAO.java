@@ -5,9 +5,9 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-// °Ô½ÃÆÇ DAO µû·Î, ´ñ±Û DAO µû·Î ¸¸µé ¿¹Á¤ ==> DAO°¡ ¿©·¯°³ ==> @Service
-// DAO ==> @Repository
-// ÀÏ¹İ Å¬·¡½º ==> @Component
+//ê²Œì‹œíŒ DAO ë”°ë¡œ, ëŒ“ê¸€ DAO ë”°ë¡œ ë§Œë“¤ ì˜ˆì • ==> DAOê°€ ì—¬ëŸ¬ê°œ ==> @Service
+//DAO ==> @Repository
+//ì¼ë°˜ í´ë˜ìŠ¤ ==> @Component
 
 @Repository
 public class DataBoardDAO {
@@ -16,24 +16,24 @@ public class DataBoardDAO {
 	private DataBoardMapper mapper;
 	
 	/*
-	 * @Autowired: id ÁöÁ¤ ºÒ°¡. ==> µ¿ÀÏÇÑ class¸¦ °¡Áø beanµéÀ» id·Î ±¸ºĞÇÒ ¼ö ¾ø´Ù. ==> ÀÌ·± °æ¿ì ¿À·ù ¹ñÀ½
-	 * ==> @Autowired + @Qualifire("id") OR @Resource("id") »ç¿ë 
-	 * ex) application-datasource.xml¿¡¼­ ¾Æ·¡¿Í °°ÀÌ µ¿ÀÏÇÑ class°¡Áø bean µÎ °³°¡ ÀÖÀ½ 
+	 * @Autowired: id ì§€ì • ë¶ˆê°€. ==> ë™ì¼í•œ classë¥¼ ê°€ì§„ beanë“¤ì„ idë¡œ êµ¬ë¶„í•  ìˆ˜ ì—†ë‹¤. ==> ì´ëŸ° ê²½ìš° ì˜¤ë¥˜ ë±‰ìŒ
+	 * ==> @Autowired + @Qualifire("id") OR @Resource("id") ì‚¬ìš© 
+	 * ex) application-datasource.xmlì—ì„œ ì•„ë˜ì™€ ê°™ì´ ë™ì¼í•œ classê°€ì§„ bean ë‘ ê°œê°€ ìˆìŒ 
 	 *     <bean id="mapper1" class="org.mybatis.spring.mapper.MapperFactoryBean"  .... />
 	 *     <bean id="mapper2" class="org.mybatis.spring.mapper.MapperFactoryBean"  .... />
-	 *     ==> ÀÌ µÎ beanÀ» ±¸ºĞÇÏ±â À§ÇØ¼­´Â @Autowired ´Üµ¶À¸·Î¸¸ ¾µ ¼ö ¾ø°í
+	 *     ==> ì´ ë‘ beanì„ êµ¬ë¶„í•˜ê¸° ìœ„í•´ì„œëŠ” @Autowired ë‹¨ë…ìœ¼ë¡œë§Œ ì“¸ ìˆ˜ ì—†ê³ 
 	 *         1. @Autowired + @Qualifire("id")
 	 *         2. @Resource("id")
-	 *         ¿ä·¸°Ô ½á¾ß ÇÑ´Ù.      
+	 *         ìš”ë ‡ê²Œ ì¨ì•¼ í•œë‹¤.      
 	 */
 	
-	// [±Û ¸ñ·Ï] - ±Û µ¥ÀÌÅÍ 
+	// [ê¸€ ëª©ë¡] - ê¸€ ë°ì´í„° 
 	public List<DataBoardVO> databoardListData(Map map)
 	{
 		return mapper.databoardListData(map);
 	}
 	
-	// [±Û ¸ñ·Ï] - ÃÑÆäÀÌÁö
+	// [ê¸€ ëª©ë¡] - ì´í˜ì´ì§€
 	public int databoardTotalpage()
 	{
 		return mapper.databoardTotalpage();
@@ -50,25 +50,25 @@ public class DataBoardDAO {
 		return mapper.databoardDetailData(no);
 	}
 
-	// [±Û ¼öÁ¤] - ¼öÁ¤ Æû¿¡ ±Û Á¤º¸¸¦ ºÒ·¯¿Í¼­ ³Ö¾îÁØ´Ù
+	// [ê¸€ ìˆ˜ì •] - ìˆ˜ì • í¼ì— ê¸€ ì •ë³´ë¥¼ ë¶ˆëŸ¬ì™€ì„œ ë„£ì–´ì¤€ë‹¤
 	public DataBoardVO databoardUpdateData(int no)
 	{
 		return mapper.databoardDetailData(no);
 	}
 	
-	// [±Û ¼öÁ¤] - ºñ¹øÃ¼Å© 
+	// [ê¸€ ìˆ˜ì •] - ë¹„ë²ˆì²´í¬ 
 	public String databoardGetPassword(int no)
 	{
 		return mapper.databoardGetPassword(no);
 	}
 	
-	// [±Û ¼öÁ¤] - µ¥ÀÌÅÍ ¼öÁ¤ 
+	// [ê¸€ ìˆ˜ì •] - ë°ì´í„° ìˆ˜ì • 
 	public void databoardUpdate(DataBoardVO vo)
 	{
 		mapper.databoardUpdate(vo);
 	}
 	
-	// [±Û »èÁ¦] - ºñ¹ø ¸ÂÀ¸¸é »èÁ¦ 
+	// [ê¸€ ì‚­ì œ] - ë¹„ë²ˆ ë§ìœ¼ë©´ ì‚­ì œ 
 	public boolean databoardDelete(int no, String pwd)
 	{
 		boolean bCheck=false;
@@ -80,7 +80,7 @@ public class DataBoardDAO {
 		}		
 		return bCheck;
 	}
-	// [±Û »èÁ¦] - ÆÄÀÏ ÀÖ´ÂÁö Ã¼Å©
+	// [ê¸€ ì‚­ì œ] - íŒŒì¼ ìˆëŠ”ì§€ ì²´í¬
 	public DataBoardVO databoardFileInfoData(int no)
 	{
 		return mapper.databoardFileInfoData(no);

@@ -19,7 +19,7 @@ public class DataBoardVO {
 	private String filesize;
 	private int filecount;
 	
-	// ¿©·¯°³ ÆÄÀÏÀ» µ¿½Ã¿¡ ¹Ş±â À§ÇØ¼­ ¡Ú¡Ú¡Ú
+	// ì—¬ëŸ¬ê°œ íŒŒì¼ì„ ë™ì‹œì— ë°›ê¸° ìœ„í•´ì„œ â˜…â˜…â˜…
 	private List<MultipartFile> files;
 }
 
@@ -42,7 +42,7 @@ public class DataBoardVO {
  * <input type="text" name="names[2]"/>
  * <input type="text" name="names[3]"/>
  * <input type="text" name="names[4]"/>
- * ¡Ø JSP¿¡¼­´Â ÀÌ·¸°Ô name°ª¿¡ ¹è¿­ »ç¿ëÇÏ´Â °Í ºÒ°¡´É.
+ *  â€» JSPì—ì„œëŠ” ì´ë ‡ê²Œ nameê°’ì— ë°°ì—´ ì‚¬ìš©í•˜ëŠ” ê²ƒ ë¶ˆê°€ëŠ¥.
  * 
  * ===> List<String> names; 
  * 
