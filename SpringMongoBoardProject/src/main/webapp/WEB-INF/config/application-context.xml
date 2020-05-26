@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-3.0.xsd">
+
+	<!-- 
+		1. AOP 설정
+		2. 사용자 정의 클래스 등록
+		3. DataSource 
+		4. 트랜잭션 등록
+		5. MyBatis 관련 등록
+		6. Mongo,WebSocket
+		7. 스케쥴러 등록
+		8. 인터셉트 등록
+		9. ViewResolver 등록
+	 -->
+
+	<!-- 사용자 정의 클래스 메모리 할당 -->
+	<context:component-scan base-package="com.sist.*"/>
+	
+	<!-- [인코딩 처리]: @RestController, @ResponseBody 한글 인코딩 처리 (한글 깨지지 않도록) -->
+	<mvc:annotation-driven>
+		<mvc:message-converters> 
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	 
+	<!-- 몽고디비 셋팅 -->
+	<mongo:mongo-client 
+		id="mc"
+		host="127.0.0.1"
+		port="27017"
+	/>
+	
+	<!-- 
+     class MongoTemplate
+     {
+		public MongoTemplate(MongoClient mc,String databaseName)
+		{
+		}
+     }
+	-->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mc"/>
+		<constructor-arg name="databaseName" value="mydb"/>
+	</bean>
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp" 
+	 />
+
+</beans>
+
+
+
+
+
+
