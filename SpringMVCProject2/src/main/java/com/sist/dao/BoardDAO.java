@@ -9,27 +9,27 @@ public class BoardDAO {
 	@Autowired
 	private BoardMapper mapper;
 	
-	// [±Û ¸ñ·Ï]
-	// 1. ¸ñ·Ï °¡Á®¿À±â 
+	// [ê¸€ ëª©ë¡]
+	// 1. ëª©ë¡ ê°€ì ¸ì˜¤ê¸° 
 	public List<BoardVO> boardListData(Map map)
 	{
 		return mapper.boardListData(map);
 	}
-	// 2. ÅäÅ»ÆäÀÌÁö °¡Á®¿À±â 
+	// 2. í† íƒˆí˜ì´ì§€ ê°€ì ¸ì˜¤ê¸° 
 	public int boardTotalPage()
 	{
 		return mapper.boardTotalPage();
 	}
 	
 	
-	// [±Û ÀÛ¼º]
+	// [ê¸€ ì‘ì„±]
 	public void boardInsert(BoardVO vo)
 	{
 		mapper.boardInsert(vo);
 	}
 	
 	
-	// [±Û »ó¼¼º¸±â] 
+	// [ê¸€ ìƒì„¸ë³´ê¸°] 
 	public BoardVO boardDetailData(int no)
 	{
 		mapper.hitIncrement(no);
@@ -37,13 +37,13 @@ public class BoardDAO {
 	}
 	
 	
-	// [±Û ¼öÁ¤ÇÏ±â]
-	// 1. ¼öÁ¤ÇÏ±â È­¸é¿¡ ÀÌÀü¿¡ ÀÔ·ÂµÇ¾î ÀÖ´ø ±ÛÀÇ Á¤º¸ ³ëÃâ   
+	// [ê¸€ ìˆ˜ì •í•˜ê¸°]
+	// 1. ìˆ˜ì •í•˜ê¸° í™”ë©´ì— ì´ì „ì— ì…ë ¥ë˜ì–´ ìˆë˜ ê¸€ì˜ ì •ë³´ ë…¸ì¶œ   
 	public BoardVO boardUpdateData(int no)
 	{
 		return mapper.boardDetailData(no);
 	}
-	// 2. ºñ¹ø Ã¼Å©ÇÏ°í, ºñ¹ø ¸ÂÀ¸¸é ¾÷µ¥ÀÌÆ®.
+	// 2. ë¹„ë²ˆ ì²´í¬í•˜ê³ , ë¹„ë²ˆ ë§ìœ¼ë©´ ì—…ë°ì´íŠ¸.
 	public boolean boardUpdate(BoardVO vo)
 	{
 		boolean bCheck=false;
@@ -62,8 +62,8 @@ public class BoardDAO {
 	}
 
 	
-	// [±Û »èÁ¦ÇÏ±â]
-	// ºñ¹ø Ã¼Å©ÇÏ°í, ºñ¹ø ¸ÂÀ¸¸é »èÁ¦.
+	// [ê¸€ ì‚­ì œí•˜ê¸°]
+	// ë¹„ë²ˆ ì²´í¬í•˜ê³ , ë¹„ë²ˆ ë§ìœ¼ë©´ ì‚­ì œ.
 	public boolean boardDelete(int no, String pwd)
 	{
 		boolean bCheck=false;

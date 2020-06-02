@@ -15,15 +15,15 @@ public class BoardController {
 	@Autowired
 	private BoardDAO dao;
 	
-	// [±Û ¸ñ·Ï]
+	// [ê¸€ ëª©ë¡]
 	@GetMapping("board/list.do")
-	public String board_list(Model model,String page) // int page·Î ÁÖ¸é ¾È µÊ ¡Ú¡Ú¡Ú
+	public String board_list(Model model,String page) // int pageï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú¡Ú¡ï¿½
 	{
-		// Ç×»ó °ªÀÌ Á¸ÀçÇÑ´Ù¸é int·Î ¹Ş°í,  
-		// ¾î¶°ÇÑ °æ¿ì¿¡´Â °ªÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é int·Î ¹ŞÀ¸¸é ¾È µÇ°í StrinÈï·Î ¹Ş¾Æ¾ß ÇÑ´Ù. 
-		// ==> page´Â Ã³À½¿¡´Â °ªÀÌ ¾øÀ¸¹Ç·Î StringÀ¸·Î Àâ¾Æ¾ß Áh´Ù.
+		// í•­ìƒ ê°’ì´ ì¡´ì¬í•œë‹¤ë©´ intë¡œ ë°›ê³ ,  
+		// ì–´ë– í•œ ê²½ìš°ì—ëŠ” ê°’ì´ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ intë¡œ ë°›ìœ¼ë©´ ì•ˆ ë˜ê³  Striní¥ë¡œ ë°›ì•„ì•¼ í•œë‹¤. 
+		// ==> pageëŠ” ì²˜ìŒì—ëŠ” ê°’ì´ ì—†ìœ¼ë¯€ë¡œ Stringìœ¼ë¡œ ì¡ì•„ì•¼ hë‹¤.
 		
-		// 1. ¸Å°³º¯¼ö => »ç¿ëÀÚÀÇ ¿äÃ»°ªÀ» ¹Ş´Â´Ù. 
+		// 1. ë§¤ê°œë³€ìˆ˜ => ì‚¬ìš©ìì˜ ìš”ì²­ê°’ì„ ë°›ëŠ”ë‹¤. 
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
@@ -31,14 +31,14 @@ public class BoardController {
 		int start=rowSize*(curpage-1)+1;
 		int end=rowSize*curpage;
 
-		// 2. ¿äÃ»¿¡ ´ëÇÑ Ã³¸® 
+		// 2. ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ 
 		Map map=new HashMap();
 		map.put("start",start);
 		map.put("end",end);
 		List<BoardVO> list=dao.boardListData(map);
 		int totalpage=dao.boardTotalPage();
 		
-		// 3. Ã³¸®µÈ °á°ú°ª Àü¼Û 
+		// 3. ì²˜ë¦¬ëœ ê²°ê³¼ê°’ ì „ì†¡ 
 		model.addAttribute("list",list);
 		model.addAttribute("curpage",curpage);
 		model.addAttribute("totalpage",totalpage);
@@ -46,43 +46,43 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	// [±Û ÀÛ¼º_È­¸é¸¸]
+	// [ê¸€ ì‘ì„±_í™”ë©´ë§Œ]
 	@GetMapping("board/insert.do")
 	public String board_insert()
 	{
-		// º¸³¾ °Å ¾øÀ½
-		return "board/insert"; // È­¸é¸¸ ÀÌµ¿ÇÏ¸é µÊ
+		// ë³´ë‚¼ ê±° ì—†ìŒ
+		return "board/insert";  // í™”ë©´ë§Œ ì´ë™í•˜ë©´ ë¨
 	}
 	
-	// @PostMapping: formÀÏ¶§¸¸. @GetMapping: ³ª¸ÓÁö.
-	// Àß ¸ğ¸£°ÚÀ¸¸é ±×³É @RequestMapping ½á¶ó
+	// @PostMapping: formì¼ë•Œë§Œ. @GetMapping: ë‚˜ë¨¸ì§€.
+	// ì˜ ëª¨ë¥´ê² ìœ¼ë©´ ê·¸ëƒ¥ @RequestMapping ì¨ë¼
 	
 	// http://localhost/myapp/board/list.do
 	// =======================
-	// myapp/±îÁö ±âº»ÀûÀ¸·Î ÀĞ´Â´Ù.   ==> @GetMapping("board/insert.do")
+	// myapp/ê¹Œì§€ ê¸°ë³¸ì ìœ¼ë¡œ ì½ëŠ”ë‹¤.   ==> @GetMapping("board/insert.do")
 	
-	// [±Û ÀÛ¼º_½ÇÁ¦Ã³¸®]
+	// [ê¸€ ì‘ì„±_ì‹¤ì œì²˜ë¦¬]
 	@PostMapping("board/insert_ok.do")
 	public String board_insert_ok(BoardVO vo)
 	{
-		// DAO ¿¬°á
+		// DAO ì—°ê²°
 		dao.boardInsert(vo);
 		
 		return "redirect:../board/list.do";
 	}
 	
-	// [»ó¼¼º¸±â]
+	// [ìƒì„¸ë³´ê¸°]
 	@GetMapping("board/detail.do")
-	public String board_detail(Model model,int no) // º¸³»ÁÖ´Â °ªÀÌ ÀÖÀ¸¹Ç·Î Model ¼³Á¤, no°ª ¹Ş¾Æ¾ß ÇÏ¹Ç·Î int no
-	//                         =========== model ¾È¿¡ request°¡ Á¸ÀçÇÑ´Ù. 
+	public String board_detail(Model model,int no) // ë³´ë‚´ì£¼ëŠ” ê°’ì´ ìˆìœ¼ë¯€ë¡œ Model ì„¤ì •, noê°’ ë°›ì•„ì•¼ í•˜ë¯€ë¡œ int no
+	//                         =========== model ì•ˆì— requestê°€ ì¡´ì¬í•œë‹¤. 
 	{
-		// DAO ¿¬°á
+		// DAO ì—°ê²°
 		BoardVO vo=dao.boardDetailData(no);
 		model.addAttribute("vo",vo);
 		return "board/detail";
 	}
 	
-	// [¼öÁ¤ÇÏ±â]
+	// [ìˆ˜ì •í•˜ê¸°]
 	@GetMapping("board/update.do")
 	public String board_update(Model model,int no)
 	{
@@ -91,7 +91,7 @@ public class BoardController {
 		return "board/update";
 	}
 	
-	// [»èÁ¦ÇÏ±â] -È­¸é¸¸
+	// [ì‚­ì œí•˜ê¸°] -í™”ë©´ë§Œ
 	@GetMapping("board/delete.do")
 	public String board_delete(Model model,int no)
 	{

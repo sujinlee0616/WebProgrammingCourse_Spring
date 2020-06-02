@@ -11,7 +11,7 @@ public class MainClass {
 		/*MemberVO vo1=new MemberVO();
 		vo1.setNo(1);
 		vo1.setName("홍길동");
-		vo1.setSex("남자ㅣ버;ㅓ"); // Error. check 옵션이 '남','여' 이기 때문. 
+		vo1.setSex("남자;"); // Error. check 옵션이 '남','여' 이기 때문. 
 		
 		MemberVO vo2=new MemberVO();
 		vo2.setNo(2);

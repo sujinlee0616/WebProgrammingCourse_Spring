@@ -7,13 +7,13 @@ import com.sist.dao.*;
 
 @RestController
 public class BoardRestController {
-	// [Controller vs RestController Â÷ÀÌÁ¡] 
-	// - Controller: ÆÄÀÏ¸í 
-	// - RestController: ¡Ú¡Ú¡Ú¡Ú½ºÅ©¸³Æ® ÆÄÀÏ, JSON ==> ÀÏ¹İ ¹®ÀÚ¿­¡Ú¡Ú¡Ú¡Ú
-	// - ¡ØÂü°í) @ResponseBodyÀÇ ¾÷±×·¹ÀÌµå ¹öÁ¯(?)ÀÌ @ResControllerÀÓ. 
+	// [Controller vs RestController ì°¨ì´ì ] 
+	// - Controller: íŒŒì¼ëª… 
+	// - RestController: â˜…â˜…â˜…â˜…ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼, JSON ==> ì¼ë°˜ ë¬¸ìì—´â˜…â˜…â˜…â˜…
+	// - â€»ì°¸ê³ ) @ResponseBodyì˜ ì—…ê·¸ë ˆì´ë“œ ë²„ì ¼(?)ì´ @ResControllerì„. 
 	
 	@Autowired
-	private BoardDAO dao; // ¼öÁ¤/»èÁ¦ ½Ã¿¡ DAO »ç¿ëµÇ¹Ç·Î ¹Ù±ù¿¡´Ù °®´Ù³õ°í ¾²ÀÚ 
+	private BoardDAO dao; // ìˆ˜ì •/ì‚­ì œ ì‹œì— DAO ì‚¬ìš©ë˜ë¯€ë¡œ ë°”ê¹¥ì—ë‹¤ ê°–ë‹¤ë†“ê³  ì“°ì  
 	
 	@PostMapping("board/update_ok.do")
 	public String board_update_ok(BoardVO vo)
@@ -21,11 +21,11 @@ public class BoardRestController {
 		String result="";
 		boolean bCheck=dao.boardUpdate(vo); //DAO
 
-		if(bCheck==true) // ºñ¹Ğ¹øÈ£ ¸ÂÀ½ 
+		if(bCheck==true) // ë¹„ë°€ë²ˆí˜¸ ë§ìŒ 
 		{
 			result="<script>location.href=\"detail.do?no="+vo.getNo()+"\";</script>";
 		}
-		else // ºñ¹Ğ¹øÈ£ Æ²¸² 
+		else // ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼ 
 		{
 			result="<script>alert(\"Password Fail!!\"); history.back(); </script>";
 		}
@@ -38,11 +38,11 @@ public class BoardRestController {
 		String result="";
 		boolean bCheck=dao.boardDelete(no,pwd); //DAO
 
-		if(bCheck==true) // ºñ¹Ğ¹øÈ£ ¸ÂÀ½ 
+		if(bCheck==true)  // ë¹„ë°€ë²ˆí˜¸ ë§ìŒ 
 		{
 			result="<script>location.href=\"list.do\"</script>";
 		}
-		else // ºñ¹Ğ¹øÈ£ Æ²¸² 
+		else // ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼ 
 		{
 			result="<script>alert(\"Password Fail!!\"); history.back(); </script>";
 		}

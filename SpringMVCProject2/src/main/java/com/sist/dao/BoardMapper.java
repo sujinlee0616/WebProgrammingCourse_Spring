@@ -19,7 +19,7 @@ public interface BoardMapper {
 	 * </select>
 	 */
 	
-	// [±Û ¸®½ºÆ®]
+	// [ê¸€ ë¦¬ìŠ¤íŠ¸]
 	@Select("SELECT no,subject,name,regdate,hit,num "
 			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
 			+ "FROM (SELECT no,subject,name,regdate,hit "
@@ -27,7 +27,7 @@ public interface BoardMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BoardVO> boardListData(Map map);
 	
-	// [ÃÑ ÆäÀÌÁö ±¸ÇÏ±â]
+	// [ì´ í˜ì´ì§€ êµ¬í•˜ê¸°]
 	@Select("SELECT CEIL(COUNT(*)/10.0) FROM board")
 	public int boardTotalPage();
 	
@@ -38,31 +38,31 @@ public interface BoardMapper {
 	public void boardInsert(BoardVO vo);
 
 	
-	// [»ó¼¼º¸±â]
-	// 1. Á¶È¸¼ö Áõ°¡
+	// [ìƒì„¸ë³´ê¸°]
+	// 1. ì¡°íšŒìˆ˜ ì¦ê°€
 	@Update("UPDATE board SET "
 			+ "hit=hit+1 "
 			+ "WHERE no=#{no}")
 	public void hitIncrement(int no);
 	
-	// 2. Á¤º¸ °¡Á®¿À±â
+	// 2. ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	@Select("SELECT * FROM board WHERE no=#{no}")
 	public BoardVO boardDetailData(int no);
 	
 	
-	// [¼öÁ¤ÇÏ±â]
-	// 1. ±Û ºñ¹ø °®°í¿À±â
+	// [ìˆ˜ì •í•˜ê¸°]
+	// 1. ê¸€ ë¹„ë²ˆ ê°–ê³ ì˜¤ê¸°
 	@Select("SELECT pwd FROM board "
 			+ "WHERE no=#{no}")
 	public String boardGetPwd(int no);
 	
-	// 2. ±Û ºñ¹ø ¸ÂÀ¸¸é ³»¿ë ¾÷µ¥ÀÌÆ®ÇÏ±â
+	// 2. ê¸€ ë¹„ë²ˆ ë§ìœ¼ë©´ ë‚´ìš© ì—…ë°ì´íŠ¸í•˜ê¸°
 	@Update("UPDATE board SET "
 			+ "name=#{name},subject=#{subject},content=#{content} "
 			+ "WHERE no=#{no}")
 	public void boardUpdate(BoardVO vo);
 	
-	// [»èÁ¦ÇÏ±â] 
+	// [ì‚­ì œí•˜ê¸°] 
 	@Delete("DELETE FROM board WHERE no=#{no}")
 	public void boardDelete(int no);
 	
