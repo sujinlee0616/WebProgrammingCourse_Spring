@@ -34,7 +34,9 @@
 23. SpringReactProject★          
    Spring과 WebStorm에서 짠 React소스(sist-spring-project)와 연동 (CORS 처리함)                     
    WebStorm에서 짠 React소스를 webpack으로 bundle.js 만들어서 적용        
-   Service 사용      
+   Service 사용       
+24. RecipeProject              
+  : MongoDB 활용 참고           
           
       
 ### WebProgrammingCourse_Spring        

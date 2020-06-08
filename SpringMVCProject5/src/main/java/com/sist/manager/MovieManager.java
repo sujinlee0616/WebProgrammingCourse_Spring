@@ -9,8 +9,8 @@ import org.jsoup.select.Elements;
 import com.sist.dao.MovieDAO;
 import com.sist.dao.MovieVO;
 
-// [³×ÀÌ¹ö ¿µÈ­ Å©·Ñ¸µ]
-// main µ¹¸®¸é MongoDB¿¡ ½×ÀÓ 
+//[ë„¤ì´ë²„ ì˜í™” í¬ë¡¤ë§]
+//main ëŒë¦¬ë©´ MongoDBì— ìŒ“ì„ 
 public class MovieManager {
 	
 	public List<String> movieLinkData()
@@ -19,9 +19,9 @@ public class MovieManager {
 		
 		try 
 		{
-			for(int i=1;i<=40;i++) // ÃÑ 40ÆäÀÌÁö 	
+			for(int i=1;i<=40;i++) // ì´ 40í˜ì´ì§€ 	
 			{
-				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200513&page="+i).get();
+				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200608&page="+i).get();
 				Elements link=doc.select("td.title div.tit5 a");
 				for(int j=0;j<link.size();j++)
 				{
@@ -29,6 +29,7 @@ public class MovieManager {
 					list.add("https://movie.naver.com"+strLink);
 				}
 			}
+			
 			
 		} catch (Exception ex) {}
 		
@@ -39,19 +40,23 @@ public class MovieManager {
 	{
 		try {
 			
-			// DAO ¿¬°á
+			// DAO ì—°ê²°
 			MovieDAO dao=new MovieDAO();
 			
 			List<String> list=movieLinkData();
 			int k=1;
 			for(String url:list)
 			{
-				// ¼ºÀÎ¿µÈ­´Â Å©·Ñ¸µ ºÒ°¡ ==> Å©·Ñ¸µ ºÒ°¡ÇÑ ¾Öµé ÀÌÈÄ¿¡µµ Å©·Ñ¸µ µÇ°Ô ÇÏ±â À§ÇØ¼­ for¹® ¾È¿¡ try~catch¸¦ ÀÌ·¸°Ô ´Ş¾ÆÁáÀ½ 
+				// ì„±ì¸ì˜í™”ëŠ” í¬ë¡¤ë§ ë¶ˆê°€ ==> í¬ë¡¤ë§ ë¶ˆê°€í•œ ì• ë“¤ ì´í›„ì—ë„ í¬ë¡¤ë§ ë˜ê²Œ í•˜ê¸° ìœ„í•´ì„œ forë¬¸ ì•ˆì— try~catchë¥¼ ì´ë ‡ê²Œ ë‹¬ì•„ì¤¬ìŒ  
 				try {
+					
 					Document doc=Jsoup.connect(url).get();
-
+					String code=url.substring(url.lastIndexOf("=")+1);
+					
 					Element title=doc.selectFirst("div.mv_info h3.h_movie a");
-					Element poster=doc.selectFirst("div.poster a img");
+					// poster: https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=xxxxx
+					String poster="https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode="+code;
+					
 					Element genre=doc.selectFirst("dl.info_spec span a");
 					Element grade=doc.select("dl.info_spec dd").get(3);
 					Element director=doc.selectFirst("div.info_spec2 dl.step1 a");
@@ -60,21 +65,21 @@ public class MovieManager {
 					
 					MovieVO vo=new MovieVO();
 					vo.setMno(Integer.parseInt(url.substring(url.lastIndexOf("=")+1))); 
-					// <a href="/movie/bi/mi/basic.nhn?code=174830" title="°¡¹ö³ª¿ò"> ¿¡¼­ hrefÀÇ = µÚÀÇ ¼ıÀÚ ±ÜÀ½
-					// ¿µÈ­ °íÀ¯¹øÈ£ 
-					System.out.println("================== ¿µÈ­Á¤º¸ ==================");
+					// <a href="/movie/bi/mi/basic.nhn?code=174830" title="ê°€ë²„ë‚˜ì›€"> ì—ì„œ hrefì˜ = ë’¤ì˜ ìˆ«ì ê¸ìŒ
+					// ì˜í™” ê³ ìœ ë²ˆí˜¸ 
+					System.out.println("================== ì˜í™”ì •ë³´ ==================");
 					System.out.println("k="+k);
-					System.out.println("1.¿µÈ­¹øÈ£="+vo.getMno());
-					System.out.println("2.Á¦¸ñ="+title.text());
-					System.out.println("3.Æ÷½ºÅÍ="+poster.attr("src"));
-					System.out.println("4.Àå¸£="+genre.text());
-					System.out.println("5.°ü¶÷µî±Ş="+grade.text());
-					System.out.println("6.°¨µ¶="+director.text());
-					System.out.println("7.¹è¿ì="+actor.text());
-					System.out.println("8.ÁÙ°Å¸®="+story.text());
+					System.out.println("1.ì˜í™”ë²ˆí˜¸="+vo.getMno());
+					System.out.println("2.ì œëª©="+title.text());
+					System.out.println("3.í¬ìŠ¤í„°="+poster);
+					System.out.println("4.ì¥ë¥´="+genre.text());
+					System.out.println("5.ê´€ëŒë“±ê¸‰="+grade.text());
+					System.out.println("6.ê°ë…="+director.text());
+					System.out.println("7.ë°°ìš°="+actor.text());
+					System.out.println("8.ì¤„ê±°ë¦¬="+story.text());
 					
 					vo.setTitle(title.text());
-					vo.setPoster(poster.attr("src"));
+					vo.setPoster(poster);
 					vo.setGenre(genre.text());
 					vo.setGrade(grade.text());
 					vo.setDirector(director.text());

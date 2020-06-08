@@ -16,14 +16,14 @@ public class MovieController {
 	@Autowired
 	private MovieDAO dao;
 
-	/* [Model °´Ã¼]: ¡Ú¡Ú¡Ú view¿¡ data¸¦ º¸³½´Ù ¡Ú¡Ú¡Ú
-	 * - Controller¿¡¼­ »ı¼ºÇÑ µ¥ÀÌÅÍ¸¦ ´ã¾Æ¼­ View·Î Àü´ŞÇÒ ¶§ »ç¿ëÇÏ´Â °´Ã¼.
-	 * - ServeltÀÇ request.setAttribute()¿Í À¯»çÇÑ ¿ªÇÒ.
-	 * - addAttribute("Å°", "°ª") ¸Ş¼Òµå¸¦ »ç¿ëÇÏ¿© Àü´ŞÇÒ µ¥ÀÌÅÍ ¼¼ÆÃ.
-	 * - ModelÀÌ ³ª¿À¸é forward() (request À¯ÁöÇØ¾ßÇÏ´Ï±î)
-	 * - Âü°í) ÀÚ¹Ù ½ºÇÁ¸µ-model
+	/* [Model ê°ì²´]: â˜…â˜…â˜… viewì— dataë¥¼ ë³´ë‚¸ë‹¤ â˜…â˜…â˜…
+	 * - Controllerì—ì„œ ìƒì„±í•œ ë°ì´í„°ë¥¼ ë‹´ì•„ì„œ Viewë¡œ ì „ë‹¬í•  ë•Œ ì‚¬ìš©í•˜ëŠ” ê°ì²´.
+	 * - Serveltì˜ request.setAttribute()ì™€ ìœ ì‚¬í•œ ì—­í• .
+	 * - addAttribute("í‚¤", "ê°’") ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ ì „ë‹¬í•  ë°ì´í„° ì„¸íŒ….
+	 * - Modelì´ ë‚˜ì˜¤ë©´ forward() (request ìœ ì§€í•´ì•¼í•˜ë‹ˆê¹Œ)
+	 * - ì°¸ê³ ) ìë°” ìŠ¤í”„ë§-model
 	 *        https://lopicit.tistory.com/224 
-	 * - Âü°í) Spring - ModelÀ» ÀÌ¿ëÇÏ¿© View¿¡ µ¥ÀÌÅÍ ³Ñ°ÜÁÖ±â - 6
+	 * - ì°¸ê³ ) Spring - Modelì„ ì´ìš©í•˜ì—¬ Viewì— ë°ì´í„° ë„˜ê²¨ì£¼ê¸° - 6
 	 *         https://galid1.tistory.com/504
 	 */
 	
@@ -46,7 +46,7 @@ public class MovieController {
 	@PostMapping("movie/find.do")
 	public String movie_find(Model model,String search_keyword)
 	{
-		// DAO ¿¬°á
+		// DAO ì—°ê²°
 		List<MovieVO> list=dao.movieFindData(search_keyword);
 		model.addAttribute("list",list);
 		
@@ -56,8 +56,8 @@ public class MovieController {
 	@GetMapping("movie/detail.do")
 	public String movie_detail(Model model,int mno)
 	{
-		// DAO ¿¬°á 
-		// °á°ú°ª => model¿¡ ½Æ´Â´Ù (modelÀÌ request¸¦ °®°í ÀÖ±â ¶§¹®) 
+		// DAO ì—°ê²° 
+		// ê²°ê³¼ê°’ => modelì— ì‹£ëŠ”ë‹¤ (modelì´ requestë¥¼ ê°–ê³  ìˆê¸° ë•Œë¬¸) 
 		MovieVO vo=dao.movieDetailData(mno);
 		model.addAttribute("vo",vo);
 		return "movie/detail";
